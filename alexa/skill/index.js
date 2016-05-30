@@ -13,9 +13,7 @@
 //TODO: Move APP_ID to configdata.json file
 var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1"; //replace with "amzn1.echo-sdk-ams.app.[your-unique-value-here]";
 
-/**
- * Array containing animal facts.
- */
+//TODO: remove default strings and events
 var MY_FACTS = [
     "It is raining now.",
     "It is raining now.",
