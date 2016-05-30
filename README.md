@@ -18,6 +18,7 @@ npm install
 
 ```
 
+TO ADD: create the config.data file from configdata.json.txt
 
 
 ## Contributors
