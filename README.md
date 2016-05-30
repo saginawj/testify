@@ -18,7 +18,14 @@ npm install
 
 ```
 
-TO ADD: create the config.data file from configdata.json.txt
+Create config files
+
+```
+Rename configdata.json.txt to configdata.json
+
+Replace ifttt key with correct IFTTT Key
+
+```
 
 
 ## Contributors
