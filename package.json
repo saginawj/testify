@@ -1,0 +1,23 @@
+{
+  "name": "testify",
+  "version": "1.0.0",
+  "description": "Uses test results to trigger IoT events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "iot",
+    "lambda",
+    "hue",
+    "dynamodb",
+    "ccat"
+  ],
+  "author": "Jon Saginaw",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.3.16",
+    "fs": "0.0.2",
+    "request": "^2.72.0"
+  }
+}

@@ -1,0 +1,3 @@
+{
+  "iftttkey":"replace with ifttt key"
+}
