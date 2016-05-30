@@ -3,8 +3,7 @@
  *
  * Examples:
  * One-shot model:
- *  User: "Alexa, ask Animal Facts for an animal fact"
- *  Alexa: "Here's your animal fact: ..."
+ *  User: "Alexa, ask Testify to ..."
  */
 
 /**
@@ -19,36 +18,9 @@ AWS.config.update({region:'us-east-1'});
 
 //TODO: remove default strings and events
 var MY_FACTS = [
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "It is raining now.",
-    "Today is Memorial Day.",
-    "I got wet this morning.",
-    "I got wet this morning.",
-    "I got wet this morning.",
-    "I got wet this morning.",
-    "I got wet this morning.",
-    "I got wet this morning.",
-    "I got wet this morning.",
-    "Today is Memorial Day.",
-    "Today is Memorial Day.",
-    "Today is Memorial Day.",
-    "Today is Memorial Day.",
-    "Today is Memorial Day.",
-    "Today is Memorial Day.",
-    "Today is Memorial Day.",
-    "Today is Memorial Day.",
-    "Today is a good day for a movie."
+    "This is Fact 1.",
+    "This is Fact 2.",
+    "This is Fact 3."
 ];
 
 /**
@@ -137,14 +109,31 @@ function handleNewFactRequest(response) {
 function handleStartTestingRequest(response) {
 
     // Create speech output
-    var speechOutput = "I'll start testing now.";
+    var speechOutput = "Kicking off the testing pipeline now.";
+
+    //TODO code extracted to codePipelineHelper
+    var codepipeline = new AWS.CodePipeline();
+
+    var params = {
+        name: "testify-pipeline"
+    };
+    codepipeline.startPipelineExecution(params, function(err, data) {
+        if (err){
+            console.log("FAILED");
+            console.log(err, err.stack);
+        }
+        else{
+            console.log("SUCCESS");
+            console.log(data);
+        }
+    });
 
     console.log(speechOutput);
 
-    response.tellWithCard(speechOutput, "AnimalFacts", speechOutput);
+    response.tellWithCard(speechOutput, "Testify", speechOutput);
 }
 
-//TODO when this runs, the 'answer' is empty bc i dont know Node well enough yet.  Will need to fix. 
+//TODO when this runs, the 'answer' is empty bc i dont know Node well enough yet.  Will need to fix.
 function handleCheckTestingStatusRequest(response) {
 
     // Create speech output
