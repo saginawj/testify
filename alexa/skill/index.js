@@ -13,7 +13,7 @@
 var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1"; //replace with "amzn1.echo-sdk-ams.app.[your-unique-value-here]";
 
 var AWS = require('aws-sdk');
-var DOC = require("dynamodb-doc");
+//var DOC = require("dynamodb-doc");
 AWS.config.update({region:'us-east-1'});
 
 //TODO: remove default strings and events
@@ -139,7 +139,7 @@ function handleCheckTestingStatusRequest(response) {
     // Create speech output
     var speechOutput = "Sample Text";
 
-    var docClient = new DOC.DynamoDB();
+    var docClient = new AWS.DynamoDB.DocumentClient();
 
     params = {};
     params.TableName = "testResultsTable";

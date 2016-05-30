@@ -25,7 +25,9 @@ jspm_packages
 
 #config data
 configdata.json
-iot/configdata.json
 
 #IDE files
+*.env
 .idea/
+event.json
+context.json
