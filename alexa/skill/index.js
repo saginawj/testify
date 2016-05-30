@@ -13,6 +13,10 @@
 //TODO: Move APP_ID to configdata.json file
 var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1"; //replace with "amzn1.echo-sdk-ams.app.[your-unique-value-here]";
 
+var AWS = require('aws-sdk');
+var DOC = require("dynamodb-doc");
+AWS.config.update({region:'us-east-1'});
+
 //TODO: remove default strings and events
 var MY_FACTS = [
     "It is raining now.",
@@ -61,7 +65,7 @@ Testify.prototype = Object.create(AlexaSkill.prototype);
 Testify.prototype.constructor = Testify;
 
 Testify.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
-    console.log("AnimalFacts onSessionStarted requestId: " + sessionStartedRequest.requestId
+    console.log("Testify onSessionStarted requestId: " + sessionStartedRequest.requestId
         + ", sessionId: " + session.sessionId);
     // any initialization logic goes here
 };
@@ -140,16 +144,38 @@ function handleStartTestingRequest(response) {
     response.tellWithCard(speechOutput, "AnimalFacts", speechOutput);
 }
 
-//This will read from DynamoDB to pull the latest test results.
+//TODO when this runs, the 'answer' is empty bc i dont know Node well enough yet.  Will need to fix. 
 function handleCheckTestingStatusRequest(response) {
 
     // Create speech output
-    var speechOutput = "The last test results are: dot, dot dot.";
+    var speechOutput = "Sample Text";
 
-    console.log(speechOutput);
+    var docClient = new DOC.DynamoDB();
+
+    params = {};
+    params.TableName = "testResultsTable";
+    params.Key = {id : "1010"};
+    theAnswer = "";
+
+    console.log("Before GetItem");
+
+    docClient.getItem(params, function(err, data) {
+        if (err) {
+            console.log(err); // an error occurred
+        }
+        else {
+            console.log("The Data:  ", data); // successful response
+            theAnswer = data.Item.passpercentage;
+            console.log("The Answer from inside GetItem  :", theAnswer);
+        }
+    });
+
+
+    console.log("The Answer outside GetItem  :", theAnswer);
 
     response.tellWithCard(speechOutput, "Testify", speechOutput);
 }
+
 
 
 // Create the handler that responds to the Alexa Request.
