@@ -4,6 +4,9 @@
       "intent": "GetNewFactIntent"
     },
     {
+      "intent": "StartTestingIntent"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {
