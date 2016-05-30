@@ -12,3 +12,12 @@ GetNewFactIntent give me some information
 GetNewFactIntent give me some space information
 GetNewFactIntent tell me something
 GetNewFactIntent give me something
+StartTestingIntent start testing stuff
+StartTestingIntent start testing things
+StartTestingIntent start the test harness
+StartTestingIntent test stuff
+CheckTestingStatusIntent tell me the deployment status
+CheckTestingStatusIntent tell me the status of the deployment
+CheckTestingStatusIntent the testing status
+CheckTestingStatusIntent the deployment status
+CheckTestingStatusIntent if we're good

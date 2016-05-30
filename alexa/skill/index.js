@@ -54,37 +54,49 @@ var MY_FACTS = [
  */
 var AlexaSkill = require('./AlexaSkill');
 
-var SpaceGeek = function () {
+var Testify = function () {
     AlexaSkill.call(this, APP_ID);
 };
 
 // Extend AlexaSkill
-SpaceGeek.prototype = Object.create(AlexaSkill.prototype);
-SpaceGeek.prototype.constructor = SpaceGeek;
+Testify.prototype = Object.create(AlexaSkill.prototype);
+Testify.prototype.constructor = Testify;
 
-SpaceGeek.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
+Testify.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
     console.log("AnimalFacts onSessionStarted requestId: " + sessionStartedRequest.requestId
         + ", sessionId: " + session.sessionId);
     // any initialization logic goes here
 };
 
-SpaceGeek.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
+Testify.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
     console.log("AnimalFacts onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
     handleNewFactRequest(response);
+    //Additional Handlers
+    handleStartTestingRequest(response);
+    handleCheckTestingStatusRequest(response);
 };
 
 /**
  * Overridden to show that a subclass can override this function to teardown session state.
  */
-SpaceGeek.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
+Testify.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
     console.log("AnimalFacts onSessionEnded requestId: " + sessionEndedRequest.requestId
         + ", sessionId: " + session.sessionId);
     // any cleanup logic goes here
 };
 
-SpaceGeek.prototype.intentHandlers = {
+Testify.prototype.intentHandlers = {
     "GetNewFactIntent": function (intent, session, response) {
         handleNewFactRequest(response);
+    },
+
+    //adding second event handler
+    "StartTestingIntent": function (intent, session, response) {
+        handleStartTestingRequest(response);
+    },
+    //adding third event handler
+    "CheckTestingStatusIntent": function (intent, session, response) {
+        handleCheckTestingStatusRequest(response);
     },
 
     "AMAZON.HelpIntent": function (intent, session, response) {
@@ -106,7 +118,7 @@ SpaceGeek.prototype.intentHandlers = {
  * Gets a random new fact from the list and returns to the user.
  */
 function handleNewFactRequest(response) {
-    // Get a random animal fact from the space facts list
+    // Get a random animal fact from the animals facts list
     var factIndex = Math.floor(Math.random() * MY_FACTS.length);
     var fact = MY_FACTS[factIndex];
 
@@ -118,10 +130,34 @@ function handleNewFactRequest(response) {
     response.tellWithCard(speechOutput, "AnimalFacts", speechOutput);
 }
 
+//This will eventually kickoff the Code Deployment
+//TODO change logic to kick off CodePipeline
+function handleStartTestingRequest(response) {
+
+    // Create speech output
+    var speechOutput = "I'll start testing now.";
+
+    console.log(speechOutput);
+
+    response.tellWithCard(speechOutput, "AnimalFacts", speechOutput);
+}
+
+//This will read from DynamoDB to pull the latest test results.
+function handleCheckTestingStatusRequest(response) {
+
+    // Create speech output
+    var speechOutput = "The last test results are: dot, dot dot.";
+
+    console.log(speechOutput);
+
+    response.tellWithCard(speechOutput, "Testify", speechOutput);
+}
+
+
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {
-    // Create an instance of the SpaceGeek skill.
-    var spaceGeek = new SpaceGeek();
-    spaceGeek.execute(event, context);
+    // Create an instance of the Testify skill.
+    var testify = new Testify();
+    testify.execute(event, context);
 };
 
