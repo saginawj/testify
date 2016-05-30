@@ -1,25 +1,19 @@
 var AWS = require("aws-sdk");
-var DOC = require("dynamodb-doc");
-
 AWS.config.update({region: "us-east-1"});
 
-var docClient = new DOC.DynamoDB();
+var docClient = new AWS.DynamoDB.DocumentClient();
 
-params = {};
-params.TableName = "testResultsTable";
-params.Key = {id : "1010"};
-theAnswer = "";
+var tableName = 'testResultsTable';
+var id = '1010' //to replace
 
-console.log("Before GetItem");
-
-docClient.getItem(params, function(err, data) {
-    if (err) {
-        console.log(err); // an error occurred
+var params = {
+    TableName : tableName,
+    Key: {
+        id: id
     }
-    else {
-        console.log("The Data:  ", data); // successful response
-        theAnswer = data.Item.passpercentage;
-        console.log("The Answer:  :", theAnswer);
-    }
+};
+
+docClient.get(params, function(err, data) {
+    if (err) console.log(err);
+    else console.log(data);
 });
-
