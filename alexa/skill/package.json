@@ -1,0 +1,20 @@
+{
+  "name": "testify-alexa",
+  "version": "1.0.0",
+  "description": "Alexa entry point for Testify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "node",
+    "testify"
+  ],
+  "author": "Jon Saginaw",
+  "license": "ISC",
+  "dependencies": {
+    "aws": "0.0.3-2",
+    "node-lambda": "^0.8.5"
+  }
+}
