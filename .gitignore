@@ -1,7 +1,6 @@
 # Logs
 logs
 *.log
-npm-debug.log*
 
 # Runtime data
 pids
@@ -28,4 +27,4 @@ jspm_packages
 configdata.json
 
 #IDE files
-.idea
+.idea/
