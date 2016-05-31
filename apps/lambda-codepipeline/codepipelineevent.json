@@ -1,0 +1,20 @@
+{
+  "CodePipeline.job": {
+    "id": "0d279ba9-ca72-45b5-b8fa-319b3f828973",
+    "accountId": "821121332838",
+    "data": {
+      "actionConfiguration": {
+        "configuration": {
+          "FunctionName": "testify-codePipeline"
+        }
+      },
+      "inputArtifacts": [],
+      "outputArtifacts": [],
+      "artifactCredentials": {
+        "secretAccessKey": "iJrlq3xNtIqPIRcVOGFtip92Db49nuwqjg8PADQB",
+        "sessionToken": "AgoGb3JpZ2luECoaCXVzLWVhc3QtMSKAAg8LnJ/jA+hd5Ez2SzETKIb34lrXxTy3YtdKeuXICOLCoCt2z8TOvABWXeLbmie0W7BSSjtfpXxYM+4YC8bBS9PqiCW4VrreJdBRgvR0zFtQa0Uf8qcdeBS0Y2lEZwkhMDMx28/ZHMCT/BpzyXLEHIOOz28TA8EdMXJQ3SvE9AGMoIpB1TZR8tTRi4ID2pFDYdd09fG2EaFA7WfpsS/YR95H5PPTvbNfWdSoLiP4SbMPkghKIRtghlvTyolxNvwVt/VpIBtuxvq3CXgZ5L7POi3/indB2Uw/UB23RaWfOKRlD/R5Bw/N7ljfg74/NA1AqljSL61CkPrlBt3mWumZhy4qyQMIIBAAGgw4MjExMjEzMzI4MzgiDNRQyER7kJOmG/MWeSqmA4Wl1puKiUcBTMR139Glifq1KFAUscTsJVvD4u9mXO3Ahe/4KyLHv6JNtNYDRYh3q0jprDATVRWTuhXVTpkZgVTHC92uIwX8Cx3yMAOoxpXSgN+h4dz6nQbJhbQuBnvFOsI/2/87DWoXJwsqa1DmhOwRm2j1w9MKANCcg3mJ++H+urCAagyUMaijs9G2hFDpC+acBxhQ3dO5o8mPam90Ned9OluSLnZ3L3LV9XZEdZitNFdYpPTwBWepbky3bZESDkeERIM07TOtdkz2sLct1xYRRjZVlC91vYRkK1sUWEnVo5ytkXhUHEec49JhfpUj+XYDwIxZs1NwcmbfMYIObQsV9S2dKQH1MUBXH646oGRZ3tLEq51VnAAq4vZsnOBbdVc+NrDpgZPT5urhJMKGq+gmAAZPrP7azM14iQGWr1L5PyMGZNEf9WZ0k6vIAk22ERaGc7OHtsvofO/tC6HGZLMcFEdq6SJGheMpr6XvNEAdoLzO7d2sriWyrckP7lORQ7FEIEhCTvEBKZjAmz+ha0vAeUMg4Rz6yFQWknmPHec4q74kw63xMMWiuLoF",
+        "accessKeyId": "ASIAIMEI4OPAJGWA6MRQ"
+      }
+    }
+  }
+}
