@@ -113,17 +113,18 @@ function handleStartTestingRequest(response) {
 
     //TODO code extracted to codePipelineHelper
     var codepipeline = new AWS.CodePipeline();
+    var pipelineName = "testify-pipeline";
 
     var params = {
-        name: "testify-pipeline"
+        name: pipelineName
     };
     codepipeline.startPipelineExecution(params, function(err, data) {
         if (err){
-            console.log("FAILED");
+            console.log("CODE PIPELINE FAILED:  ", pipelineName);
             console.log(err, err.stack);
         }
         else{
-            console.log("SUCCESS");
+            console.log("CODE PIPELINE SUCCESS:  ", pipelineName);
             console.log(data);
         }
     });
