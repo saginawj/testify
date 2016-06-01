@@ -1,20 +1,20 @@
-//TODO: replace boiler-plate SNS code with code that puts message into Dynamo
-
-var AWS = require("aws-sdk");
+var assert = require('assert');
+var AWS = require('aws-sdk');
+var http = require('http');
 AWS.config.update({region: "us-east-1"});
 
-'use strict';
-console.log('Loading function');
-
 exports.handler = function(event, context) {
+
+    console.log("BEGIN LAMBDA-CODEPIPELINE");
 
     var codepipeline = new AWS.CodePipeline();
 
     // Retrieve the Job ID from the Lambda action
     var jobId = event["CodePipeline.job"].id;
 
-    //use this as a user param
-    //var userParameters = event["CodePipeline.job"].data.actionConfiguration.configuration.UserParameters;
+    // Retrieve the value of UserParameters from the Lambda action configuration in AWS CodePipeline, in this case a URL which will be
+    // health checked by this function.
+    var url = "http://google.com"; //event["CodePipeline.job"].data.actionConfiguration.configuration.UserParameters;
 
     // Notify AWS CodePipeline of a successful job
     var putJobSuccess = function(message) {
@@ -45,52 +45,29 @@ exports.handler = function(event, context) {
         });
     };
 
+    // Validate the URL passed in UserParameters
+    if(!url || url.indexOf('http://') === -1) {
+        putJobFailure('The UserParameters field must contain a valid URL address to test, including http:// or https://');
+        return;
+    }
 
     // Helper function to make a HTTP GET request to the page.
     // The helper will test the response and succeed or fail the job accordingly
-    var getPage = function(text, callback) {
-        var pageObject = "hello";
-        callback(pageObject)
+    var getPage = function(url, callback) {
+        var text = "hello";
+        console.log("BEGIN GET PAGE HELPER");
+        callback(text);
     };
 
-    var url = "mytestdata";
-
-    getPage(url, function(returnedPage) {
+    getPage(url, function(finalText) {
         try {
             // Succeed the job
-            putJobSuccess("Tests passed.");
+            console.log("BEGIN PUT-JOB-SUCCESS");
+            putJobSuccess(finalText);
         } catch (ex) {
             // If any of the assertions failed then fail the job
+            console.log("BEGIN PUT-JOB-FAILURE");
             putJobFailure(ex);
         }
     });
 };
-
-
-/*
-    //TODO use the dynamohelper once its extracted into its own module
-
-    var docClient = new AWS.DynamoDB.DocumentClient();
-
-    var tableName = 'testResultsTable';
-    var id = '1010' //to replace
-
-    //these will be pulled from the EVENT via CodePipeline
-    var params = {
-        TableName : 'testResultsTable',
-        Item: {
-            id: '1050',
-            date: 'May31',
-            harness: 'regression',
-            passpercentage:  '80'
-        }
-    };
-
-    docClient.put(params, function(err, data) {
-        if (err) console.log(err);
-        else console.log(data);
-    });
-
-
-;
-    */
