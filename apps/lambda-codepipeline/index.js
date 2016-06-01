@@ -53,13 +53,43 @@ exports.handler = function(event, context) {
 
     // Helper function to make a HTTP GET request to the page.
     // The helper will test the response and succeed or fail the job accordingly
-    var getPage = function(url, callback) {
+    var dynamoUpdate = function(url, callback) {
         var text = "hello";
         console.log("BEGIN GET PAGE HELPER");
+        //TODO extract all this Dynamo code to the Dynamo helper.  Note this 'works' but executes out order bc i'm bad at node.
+        var docClient = new AWS.DynamoDB.DocumentClient();
+
+        var tableName = 'testResultsTable';
+
+        var params = {
+            TableName : tableName,
+            Item: {
+                id: '1065',
+                date: 'May31',
+                harness: 'regression',
+                passpercentage: '81'
+            }
+        };
+
+        //this wont work bc it's asnych and callback will execute before dynamo is updated
+        console.log("BEGIN DYNAMO CALL");
+        docClient.put(params, function(err, data) {
+            if (err) {
+                console.log("DYNAMO ERROR");
+                console.log(err)
+            }
+            else {
+                console.log("DYNAMO SUCCESS");
+                console.log(data);
+            };
+        });
+
+        console.log("END GET PAGE HELPER.  CALL THE CALLBACK");
+
         callback(text);
     };
 
-    getPage(url, function(finalText) {
+    dynamoUpdate(url, function(finalText) {
         try {
             // Succeed the job
             console.log("BEGIN PUT-JOB-SUCCESS");
