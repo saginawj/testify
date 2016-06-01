@@ -5,7 +5,8 @@
     "data": {
       "actionConfiguration": {
         "configuration": {
-          "FunctionName": "testify-codePipeline"
+          "FunctionName": "testify-codePipeline",
+          "UserParameters": "http://google.com"
         }
       },
       "inputArtifacts": [],
