@@ -64,7 +64,7 @@ exports.handler = function(event, context) {
         var params = {
             TableName : tableName,
             Item: {
-                id: '1065',
+                id: jobId,
                 date: 'May31',
                 harness: 'regression',
                 passpercentage: '81'
