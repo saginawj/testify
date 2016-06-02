@@ -47,6 +47,7 @@ var json=  { Items:
 //var obj = JSON.parse(json);
 var count = json.Items.length;
 var items = json.Items;
+var date = json.Items[count -1].date;
 
-console.log(items);
+console.log(date);
 
