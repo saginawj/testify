@@ -140,17 +140,45 @@ function handleStartTestingRequest(response) {
 //TODO move Dynamo code to dynamohelper
 function handleCheckTestingStatusRequest(response) {
 
-    // Create speech output
+    //for Alexa
     var speechOutput = undefined;
 
+    //for Dynamo
     var docClient = new AWS.DynamoDB.DocumentClient();
+    var tableName = 'testResultsTable';
+    var params = {
+        TableName : tableName
+    };
 
+    docClient.scan(params, function dynamoScanResponse(err, data) {
+        if (err) console.log(err);
+        else {
+
+            console.log(data.Items);
+            var count = data.Items.length -1;
+            var date = data.Items[count].date;
+            var id = data.Items[count].id;
+            var harness = data.Items[count].harness;
+            var passpercentage = data.Items[count].passpercentage;
+
+            //console.log(data);
+            console.log("Date: ", date);
+            console.log("ID: ", id);
+
+            speechOutput = "Here's your test results:   On " + date  + ", the " + harness + " harness had a pass percentage of " + passpercentage;
+            console.log("SPEECH OUTPUT:  " + speechOutput);
+            response.tellWithCard(speechOutput, "Testify", speechOutput);
+        }
+    });
+
+
+    /*
+    //this code needs to be executed after getting the date of the latst record from the scan
+    var speechOutput = undefined;
     params = {};
     params.TableName = "testResultsTable";
     params.Key = {id : "1010"};
     theAnswer = "";
-
-    console.log("Before GetItem");
 
     docClient.get(params, function(err, data) {
         if (err) {
@@ -172,11 +200,7 @@ function handleCheckTestingStatusRequest(response) {
             response.tellWithCard(speechOutput, "Testify", speechOutput);
         }
     });
-
-    console.log("The Answer outside GetItem  :", theAnswer);
-
-    //moving the resonse into the Dynamo code.
-    //response.tellWithCard(speechOutput, "Testify", speechOutput);
+    */
 }
 
 

@@ -19,10 +19,9 @@
     "aws-sdk": "^2.3.16",
     "babel-cli": "^6.9.0",
     "fs": "0.0.2",
+    "lodash": "^4.13.1",
     "node-lambda": "^0.8.5",
     "request": "^2.72.0"
   },
-  "devDependencies": {
-    "babel-cli": "^6.9.0"
-  }
+  "devDependencies": {}
 }
