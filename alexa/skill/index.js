@@ -13,7 +13,6 @@
 var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1"; //replace with "amzn1.echo-sdk-ams.app.[your-unique-value-here]";
 
 var AWS = require('aws-sdk');
-//var DOC = require("dynamodb-doc");
 AWS.config.update({region:'us-east-1'});
 
 //TODO: remove default strings and events
@@ -108,16 +107,20 @@ function handleNewFactRequest(response) {
 //TODO change logic to kick off CodePipeline
 function handleStartTestingRequest(response) {
 
+    console.log("START handleStartTestingRequest");
+
     // Create speech output
     var speechOutput = "Kicking off the testing pipeline now.";
 
     //TODO code extracted to codePipelineHelper
     var codepipeline = new AWS.CodePipeline();
-    var pipelineName = "testify-pipeline";
+    var pipelineName = "testify-newPipeline";
 
     var params = {
         name: pipelineName
     };
+
+    console.log("Execute Start Pipleine");
     codepipeline.startPipelineExecution(params, function(err, data) {
         if (err){
             console.log("CODE PIPELINE FAILED:  ", pipelineName);
@@ -149,21 +152,31 @@ function handleCheckTestingStatusRequest(response) {
 
     console.log("Before GetItem");
 
-    docClient.getItem(params, function(err, data) {
+    docClient.get(params, function(err, data) {
         if (err) {
-            console.log(err); // an error occurred
+            console.log("GetItem Error");
+            console.log(err)
+            speechOutput = "Sorry, I had trouble pulling the resuilts.  You'll need to check the old fashion way.  With your eyes";
+            response.tellWithCard(speechOutput, "Testify", speechOutput);
         }
         else {
-            console.log("The Data:  ", data); // successful response
-            theAnswer = data.Item.passpercentage;
-            console.log("The Answer from inside GetItem  :", theAnswer);
+            console.log("Dynamo Get Successful.  Data Below");
+            console.log(data);
+
+            var passPercentage  = data.Item.passpercentage;
+            var date            = data.Item.date;
+            var harness         = data.Item.harness;
+
+            speechOutput = "Here's your test resuilts:   On " + date  + ", the " + harness + " harness had a pass percentage of " + passPercentage;
+            console.log("SPEECH OUTPUT:  " + speechOutput);
+            response.tellWithCard(speechOutput, "Testify", speechOutput);
         }
     });
 
-
     console.log("The Answer outside GetItem  :", theAnswer);
 
-    response.tellWithCard(speechOutput, "Testify", speechOutput);
+    //moving the resonse into the Dynamo code.
+    //response.tellWithCard(speechOutput, "Testify", speechOutput);
 }
 
 

@@ -71,7 +71,7 @@ exports.handler = function(event, context) {
             }
         };
 
-        //this wont work bc it's asnych and callback will execute before dynamo is updated
+        //this call will complete after the pipeline callback reports success, which is ok
         console.log("BEGIN DYNAMO CALL");
         docClient.put(params, function(err, data) {
             if (err) {

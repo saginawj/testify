@@ -16,19 +16,28 @@ var params = {
     }
 };
 
+/*
 docClient.put(params, function(err, data) {
+    if (err) console.log(err);
+    else console.log(data);
+});
+*/
+
+var paramsGet = {
+    TableName : 'testResultsTable',
+    Key: {
+        id: '1010'
+    }
+};
+
+//GET
+docClient.get(paramsGet, function(err, data) {
     if (err) console.log(err);
     else console.log(data);
 });
 
 console.log("EXECUTION COMPLETE");
 
-/*
-//GET
-docClient.get(params, function(err, data) {
-    if (err) console.log(err);
-    else console.log(data);
-});
- */
+
 
 
