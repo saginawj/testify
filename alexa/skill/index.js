@@ -137,11 +137,11 @@ function handleStartTestingRequest(response) {
     response.tellWithCard(speechOutput, "Testify", speechOutput);
 }
 
-//TODO when this runs, the 'answer' is empty bc i dont know Node well enough yet.  Will need to fix.
+//TODO move Dynamo code to dynamohelper
 function handleCheckTestingStatusRequest(response) {
 
     // Create speech output
-    var speechOutput = "Sample Text";
+    var speechOutput = undefined;
 
     var docClient = new AWS.DynamoDB.DocumentClient();
 

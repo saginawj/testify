@@ -6,23 +6,38 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 var tableName = 'testResultsTable';
 //var id = '1010' //to replace
 
+
+
 var params = {
-    TableName : tableName,
-    Item: {
-        id: '1061',
-        date: 'May31',
-        harness: 'regression',
-        passpercentage: '81'
-    }
+    TableName : tableName
 };
 
+
+docClient.scan(params, function(err, data) {
+    if (err) console.log(err);
+    else console.log(data);
+});
+
 /*
+//PUT COMMAND
+
+ var params = {
+ TableName : tableName,
+ Item: {
+ id: '1061',
+ date: 'May31',
+ harness: 'regression',
+ passpercentage: '81'
+ }
+ };
+
 docClient.put(params, function(err, data) {
     if (err) console.log(err);
     else console.log(data);
 });
 */
 
+/*GET
 var paramsGet = {
     TableName : 'testResultsTable',
     Key: {
@@ -35,6 +50,7 @@ docClient.get(paramsGet, function(err, data) {
     if (err) console.log(err);
     else console.log(data);
 });
+*/
 
 console.log("EXECUTION COMPLETE");
 
