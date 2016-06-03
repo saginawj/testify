@@ -1,6 +1,7 @@
 var assert = require('assert');
 var AWS = require('aws-sdk');
 var http = require('http');
+var _ = require('lodash');
 
 AWS.config.update({region: "us-east-1"});
 
@@ -65,16 +66,17 @@ exports.handler = function(event, context) {
         var d = new Date();
         var date = d.toUTCString();
         var harness = 'regression';
+        var passpercent = _.random(100);
 
 
-        //TODO randomize passpercent
+        //TODO get test results from CCAT Dynamo
         var params = {
             TableName : tableName,
             Item: {
                 id: jobId,
                 date: date,
                 harness: harness,
-                passpercentage: '81'
+                passpercentage: passpercent
             }
         };
 
