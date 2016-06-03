@@ -10,7 +10,7 @@
  * App ID for the skill
  */
 //TODO: Move APP_ID to configdata.json file
-var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1"; //replace with "amzn1.echo-sdk-ams.app.[your-unique-value-here]";
+var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1";
 
 var AWS = require('aws-sdk');
 AWS.config.update({region:'us-east-1'});
@@ -129,12 +129,14 @@ function handleStartTestingRequest(response) {
         else{
             console.log("CODE PIPELINE SUCCESS:  ", pipelineName);
             console.log(data);
+            console.log(speechOutput);
+            response.tellWithCard(speechOutput, "Testify", speechOutput);
         }
     });
 
-    console.log(speechOutput);
-
-    response.tellWithCard(speechOutput, "Testify", speechOutput);
+    //moving these into above
+    //console.log(speechOutput);
+    //response.tellWithCard(speechOutput, "Testify", speechOutput);
 }
 
 //TODO move Dynamo code to dynamohelper
