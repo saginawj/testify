@@ -155,7 +155,7 @@ function handleCheckTestingStatusRequest(response) {
     docClient.scan(params, function dynamoScanResponse(err, data) {
         if (err) console.log(err);
         else {
-
+            //TODO update to get last date based on Sort Key in new table
             console.log(data.Items);
             var count = data.Items.length -1;
             var date = data.Items[count].date;
