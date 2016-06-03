@@ -2,7 +2,7 @@
 
 var request = require('request');
 var AWS = require('aws-sdk');
-AWS.config.update({region:'us-east-1'});
+AWS.config.update({ region: 'us-east-1' });
 
 // To replace with asych file read
 var fs = require("fs");
@@ -11,6 +11,7 @@ var json = JSON.parse(content);
 var IFTTTkey = json.iftttkey;
 console.log("IFTTTKey:  ", IFTTTkey);
 
+//TODO logic isnt working to write out dynamo event.  but IFTT  works
 //HANDLE DYNAMODB EVENT
 exports.handler = (event, context, callback) => {
     //READ FROM DYNAMODB UPDATE
@@ -19,19 +20,21 @@ exports.handler = (event, context, callback) => {
     var passPercentage = null;
     var color = null;
 
-    event.Records.forEach((record) => {
+    console.log('RECORD :');
+    console.log(event.Records);
+
+    event.Records.forEach(record => {
         console.log('RECORD ID: ' + record.eventID);
         console.log('EVENT NAME:  ' + record.eventName);
-        console.log('PASS PERCENTAGE:  ' + record.dynamodb.NewImage.passpercentage.S)
-     //console.log('RECORD JSON: %j', record.dynamodb);
-    passPercentage = record.dynamodb.NewImage.passpercentage.S
-});
+        //console.log('PASS PERCENTAGE:  ' + record.dynamodb.NewImage.passpercentage.S)
+        //console.log('RECORD JSON: %j', record.dynamodb);
+        passPercentage = record.dynamodb.NewImage.passpercentage.S;
+    });
 
     //COLOR LOGIC
-    if(passPercentage >= 80){
+    if (passPercentage >= 80) {
         color = "GREEN";
-    }
-    else{
+    } else {
         color = "RED";
     }
     console.log("COLOR:  " + color);
@@ -39,10 +42,11 @@ exports.handler = (event, context, callback) => {
     //IFTTT
     //console.log("Received AWS Button event: " + event.clickType + ". Firing IFTTT Maker Trigger...");
     console.log("SEND TO IFTTT");
-    request('https://maker.ifttt.com/trigger/' + 'AWS-'+ color + '/with/key/' + IFTTTkey, function (error, response, body) {
-            console.log("Complete! Response: ", response.statusCode);
-            console.log("IFTTT RESPONSE BODY:  ", body);
-        }
-    )
-    console.log('https://maker.ifttt.com/trigger/' + 'AWS-'+ color + '/with/key/' + IFTTTkey);
+    request('https://maker.ifttt.com/trigger/' + 'AWS-' + color + '/with/key/' + IFTTTkey, function (error, response, body) {
+        console.log("Complete! Response: ", response.statusCode);
+        console.log("IFTTT RESPONSE BODY:  ", body);
+    });
+    console.log('https://maker.ifttt.com/trigger/' + 'AWS-' + color + '/with/key/' + IFTTTkey);
 };
+
+//# sourceMappingURL=index-compiled.js.map
