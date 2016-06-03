@@ -1,6 +1,7 @@
 var assert = require('assert');
 var AWS = require('aws-sdk');
 var http = require('http');
+
 AWS.config.update({region: "us-east-1"});
 
 exports.handler = function(event, context) {
@@ -56,17 +57,23 @@ exports.handler = function(event, context) {
     var dynamoUpdate = function(url, callback) {
         var text = "hello";
         console.log("BEGIN GET PAGE HELPER");
-        //TODO extract all this Dynamo code to the Dynamo helper.  Note this 'works' but executes out order bc i'm bad at node.
+
         var docClient = new AWS.DynamoDB.DocumentClient();
 
         var tableName = 'testResultsTable';
 
+        var d = new Date();
+        var date = d.toUTCString();
+        var harness = 'regression';
+
+
+        //TODO randomize passpercent
         var params = {
             TableName : tableName,
             Item: {
                 id: jobId,
-                date: 'May31',
-                harness: 'regression',
+                date: date,
+                harness: harness,
                 passpercentage: '81'
             }
         };

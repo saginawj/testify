@@ -1,4 +1,3 @@
-var _ = require('lodash');
-
-var num = _.random(15, 20);
-console.log(num);
+var dt = new Date();
+var utcDate = dt.toUTCString();
+console.log(utcDate);
