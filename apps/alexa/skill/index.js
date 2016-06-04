@@ -6,7 +6,7 @@ var properties       = PropertiesReader('./properties.txt');
 var APP_ID           = properties.get('stuff.ifttt.key');
 AWS.config.update({region:'us-east-1'});
 
-//TODO: remove default strings and events
+//TODO: remove default strings and events 
 var MY_FACTS = [
     "This is Fact 1.",
     "This is Fact 2.",
