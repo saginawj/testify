@@ -1,7 +1,7 @@
-var assert = require('assert');
-var AWS = require('aws-sdk');
-var http = require('http');
-var _ = require('lodash');
+var assert  = require('assert');
+var AWS     = require('aws-sdk');
+var http    = require('http');
+var _       = require('lodash');
 
 AWS.config.update({region: "us-east-1"});
 
