@@ -13,3 +13,8 @@ console.log(a);
 console.log(a.date);
 
 
+var passpercent = _.random(100);
+console.log(passpercent);
+
+
+
