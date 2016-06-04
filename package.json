@@ -1,0 +1,25 @@
+{
+  "name": "testify",
+  "version": "1.0.0",
+  "description": "Root for all testify components",
+  "main": "babel-test-compiled.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saginawj/testify.git"
+  },
+  "author": "Jon Saginaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saginawj/testify/issues"
+  },
+  "homepage": "https://github.com/saginawj/testify#readme",
+  "dependencies": {
+    "lodash": "^4.13.1"
+  }
+}
