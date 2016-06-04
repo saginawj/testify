@@ -11,3 +11,5 @@ var array = [
 var a = _.maxBy(array, function(o){return o.date});
 console.log(a);
 console.log(a.date);
+
+

@@ -1,0 +1,7 @@
+[aws]
+some.thing = foo
+
+[stuff]
+ifttt.key = amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1
+
+
