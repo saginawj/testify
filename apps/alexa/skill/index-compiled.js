@@ -141,6 +141,13 @@ function handleCheckTestingStatusRequest(response) {
             var harness = a.harness;
             var passpercentage = a.passpercentage;
 
+            console.log(data.Items);
+            var count = data.Items.length - 1;
+            var date = data.Items[count].date;
+            var id = data.Items[count].id;
+            var harness = data.Items[count].harness;
+            var passpercentage = data.Items[count].passpercentage;
+
             //console.log(data);
             console.log("Date: ", date);
             console.log("ID: ", id);
