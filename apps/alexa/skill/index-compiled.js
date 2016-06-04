@@ -6,9 +6,8 @@
  *  User: "Alexa, ask Testify to ..."
  */
 
-/**
- * App ID for the skill
- */
+var _ = require('lodash');
+
 //TODO: Move APP_ID to configdata.json file
 var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1";
 
@@ -149,11 +148,23 @@ function handleCheckTestingStatusRequest(response) {
         if (err) console.log(err);else {
             //TODO update to get last date based on Sort Key in new table
             console.log(data.Items);
-            var count = data.Items.length - 1;
-            var date = data.Items[count].date;
-            var id = data.Items[count].id;
-            var harness = data.Items[count].harness;
-            var passpercentage = data.Items[count].passpercentage;
+
+            var a = _.maxBy(data.Items, function (o) {
+                return o.date;
+            });
+
+            var date = a.date;
+            var id = a.id;
+            var harness = a.harness;
+            var passpercentage = a.passpercentage;
+
+            /*
+            //var count = data.Items.length -1;
+            //var date = data.Items[count].date;
+            //var id = data.Items[count].id;
+            //var harness = data.Items[count].harness;
+            //var passpercentage = data.Items[count].passpercentage;
+            */
 
             //console.log(data);
             console.log("Date: ", date);
