@@ -5,6 +5,7 @@ var _ = require('lodash');
 
 AWS.config.update({ region: "us-east-1" });
 
+//TODO remove all the legacy boilerplate code
 exports.handler = function (event, context) {
 
     console.log("BEGIN LAMBDA-CODEPIPELINE");
@@ -47,14 +48,9 @@ exports.handler = function (event, context) {
         });
     };
 
-    // Validate the URL passed in UserParameters
-    if (!url || url.indexOf('http://') === -1) {
-        putJobFailure('The UserParameters field must contain a valid URL address to test, including http:// or https://');
-        return;
-    }
-
     // Helper function to make a HTTP GET request to the page.
     // The helper will test the response and succeed or fail the job accordingly
+    //TODO this will eventually be used to write results from the harness
     var dynamoUpdate = function (url, callback) {
         var text = "hello";
         console.log("BEGIN GET PAGE HELPER");
