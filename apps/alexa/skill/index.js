@@ -14,7 +14,7 @@ var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1";
 var AWS = require('aws-sdk');
 AWS.config.update({region:'us-east-1'});
 
-//TODO: remove default strings and events
+//TODO: remove default strings and events 
 var MY_FACTS = [
     "This is Fact 1.",
     "This is Fact 2.",
