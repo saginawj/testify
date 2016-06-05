@@ -1,22 +1,14 @@
 {
-  "name": "testify-alexa",
+  "name": "node-lambda-sample",
   "version": "1.0.0",
-  "description": "Alexa entry point for Testify",
+  "description": "Sample app to run/deploy lambda locally",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "alexa",
-    "node",
-    "testify"
-  ],
   "author": "Jon Saginaw",
   "license": "ISC",
   "dependencies": {
-    "aws": "0.0.3-2",
-    "aws-sdk": "^2.3.16",
-    "lodash": "^4.13.1",
     "node-lambda": "^0.8.5"
   }
 }
