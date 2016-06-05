@@ -2,9 +2,12 @@ var _ = require('lodash');
 var PropertiesReader = require('properties-reader');
 var AWS = require('aws-sdk');
 var AlexaSkill = require('./AlexaSkill');
-var properties = PropertiesReader('./properties.txt');
-var APP_ID = properties.get('stuff.ifttt.key');
 AWS.config.update({ region: 'us-east-1' });
+
+var properties = PropertiesReader('properties.txt');
+var APP_ID = properties.get('stuff.ifttt.key'); //"amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1";
+
+console.log(APP_ID);
 
 //TODO: remove default strings and events
 var MY_FACTS = ["This is Fact 1.", "This is Fact 2.", "This is Fact 3."];
@@ -23,9 +26,9 @@ Testify.prototype.eventHandlers.onSessionStarted = function (sessionStartedReque
 };
 
 Testify.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
-    console.log("AnimalFacts onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
+    console.log("Testify onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
     handleNewFactRequest(response);
-    //Additional Handlers
+    //TODO likely to remove these.  I dont want to execute these at launch
     handleStartTestingRequest(response);
     handleCheckTestingStatusRequest(response);
 };
@@ -71,16 +74,16 @@ Testify.prototype.intentHandlers = {
  * Gets a random new fact from the list and returns to the user.
  */
 function handleNewFactRequest(response) {
-    // Get a random  fact from the facts list
+    // Get a random animal fact from the animals facts list
     var factIndex = Math.floor(Math.random() * MY_FACTS.length);
     var fact = MY_FACTS[factIndex];
 
     // Create speech output
-    var speechOutput = "Here's your fact: " + fact;
+    var speechOutput = "Here's your animal fact: " + fact;
 
     console.log("Fact:  " + fact);
 
-    response.tellWithCard(speechOutput, "Facts", speechOutput);
+    response.tellWithCard(speechOutput, "AnimalFacts", speechOutput);
 }
 
 //This will eventually kickoff the Code Deployment
@@ -112,6 +115,10 @@ function handleStartTestingRequest(response) {
             response.tellWithCard(speechOutput, "Testify", speechOutput);
         }
     });
+
+    //moving these into above
+    //console.log(speechOutput);
+    //response.tellWithCard(speechOutput, "Testify", speechOutput);
 }
 
 //TODO move Dynamo code to dynamohelper
@@ -129,7 +136,7 @@ function handleCheckTestingStatusRequest(response) {
 
     docClient.scan(params, function dynamoScanResponse(err, data) {
         if (err) console.log(err);else {
-            //TODO update to get last date based on Sort Key in new table, instead of full scan
+            //TODO update to get last date based on Sort Key in new table
             console.log(data.Items);
 
             var a = _.maxBy(data.Items, function (o) {
@@ -140,6 +147,14 @@ function handleCheckTestingStatusRequest(response) {
             var id = a.id;
             var harness = a.harness;
             var passpercentage = a.passpercentage;
+
+            /*
+            //var count = data.Items.length -1;
+            //var date = data.Items[count].date;
+            //var id = data.Items[count].id;
+            //var harness = data.Items[count].harness;
+            //var passpercentage = data.Items[count].passpercentage;
+            */
 
             //console.log(data);
             console.log("Date: ", date);
@@ -154,7 +169,7 @@ function handleCheckTestingStatusRequest(response) {
 
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {
-    // Create an instance of the Testify skill.
+    // Create an instance of the Testify src.
     var testify = new Testify();
     testify.execute(event, context);
 };
