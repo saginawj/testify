@@ -1,30 +1,16 @@
-/**
- * To update this later.
- *
- * Examples:
- * One-shot model:
- *  User: "Alexa, ask Testify to ..."
- */
-
 var _ = require('lodash');
-
-//TODO: Move APP_ID to configdata.json file
-var APP_ID = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1";
-
+var PropertiesReader = require('properties-reader');
 var AWS = require('aws-sdk');
-AWS.config.update({region:'us-east-1'});
+var AlexaSkill = require('./AlexaSkill');
+AWS.config.update({ region: 'us-east-1' });
+
+var properties = PropertiesReader('properties.txt');
+var APP_ID = properties.get('stuff.ifttt.key'); //"amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1";
+
+console.log(APP_ID);
 
 //TODO: remove default strings and events
-var MY_FACTS = [
-    "This is Fact 1.",
-    "This is Fact 2.",
-    "This is Fact 3."
-];
-
-/**
- * The AlexaSkill prototype and helper functions
- */
-var AlexaSkill = require('./AlexaSkill');
+var MY_FACTS = ["This is Fact 1.", "This is Fact 2.", "This is Fact 3."];
 
 var Testify = function () {
     AlexaSkill.call(this, APP_ID);
@@ -35,15 +21,14 @@ Testify.prototype = Object.create(AlexaSkill.prototype);
 Testify.prototype.constructor = Testify;
 
 Testify.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
-    console.log("Testify onSessionStarted requestId: " + sessionStartedRequest.requestId
-        + ", sessionId: " + session.sessionId);
+    console.log("Testify onSessionStarted requestId: " + sessionStartedRequest.requestId + ", sessionId: " + session.sessionId);
     // any initialization logic goes here
 };
 
 Testify.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
-    console.log("AnimalFacts onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
+    console.log("Testify onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
     handleNewFactRequest(response);
-    //Additional Handlers
+    //TODO likely to remove these.  I dont want to execute these at launch
     handleStartTestingRequest(response);
     handleCheckTestingStatusRequest(response);
 };
@@ -52,8 +37,7 @@ Testify.prototype.eventHandlers.onLaunch = function (launchRequest, session, res
  * Overridden to show that a subclass can override this function to teardown session state.
  */
 Testify.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
-    console.log("AnimalFacts onSessionEnded requestId: " + sessionEndedRequest.requestId
-        + ", sessionId: " + session.sessionId);
+    console.log("Testify onSessionEnded requestId: " + sessionEndedRequest.requestId + ", sessionId: " + session.sessionId);
     // any cleanup logic goes here
 };
 
@@ -120,12 +104,11 @@ function handleStartTestingRequest(response) {
     };
 
     console.log("Execute Start Pipleine");
-    codepipeline.startPipelineExecution(params, function(err, data) {
-        if (err){
+    codepipeline.startPipelineExecution(params, function (err, data) {
+        if (err) {
             console.log("CODE PIPELINE FAILED:  ", pipelineName);
             console.log(err, err.stack);
-        }
-        else{
+        } else {
             console.log("CODE PIPELINE SUCCESS:  ", pipelineName);
             console.log(data);
             console.log(speechOutput);
@@ -148,22 +131,22 @@ function handleCheckTestingStatusRequest(response) {
     var docClient = new AWS.DynamoDB.DocumentClient();
     var tableName = 'testResultsTable';
     var params = {
-        TableName : tableName
+        TableName: tableName
     };
 
     docClient.scan(params, function dynamoScanResponse(err, data) {
-        if (err) console.log(err);
-        else {
+        if (err) console.log(err);else {
             //TODO update to get last date based on Sort Key in new table
             console.log(data.Items);
 
-            var a = _.maxBy(data.Items, function(o){return o.date});
+            var a = _.maxBy(data.Items, function (o) {
+                return o.date;
+            });
 
             var date = a.date;
             var id = a.id;
             var harness = a.harness;
             var passpercentage = a.passpercentage;
-
 
             /*
             //var count = data.Items.length -1;
@@ -177,50 +160,18 @@ function handleCheckTestingStatusRequest(response) {
             console.log("Date: ", date);
             console.log("ID: ", id);
 
-            speechOutput = "Here's your test results:   On " + date  + ", the " + harness + " harness had a pass percentage of " + passpercentage;
+            speechOutput = "Here's your test results:   On " + date + ", the " + harness + " harness had a pass percentage of " + passpercentage;
             console.log("SPEECH OUTPUT:  " + speechOutput);
             response.tellWithCard(speechOutput, "Testify", speechOutput);
         }
     });
-
-
-    /*
-    //this code needs to be executed after getting the date of the latst record from the scan
-    var speechOutput = undefined;
-    params = {};
-    params.TableName = "testResultsTable";
-    params.Key = {id : "1010"};
-    theAnswer = "";
-
-    docClient.get(params, function(err, data) {
-        if (err) {
-            console.log("GetItem Error");
-            console.log(err)
-            speechOutput = "Sorry, I had trouble pulling the resuilts.  You'll need to check the old fashion way.  With your eyes";
-            response.tellWithCard(speechOutput, "Testify", speechOutput);
-        }
-        else {
-            console.log("Dynamo Get Successful.  Data Below");
-            console.log(data);
-
-            var passPercentage  = data.Item.passpercentage;
-            var date            = data.Item.date;
-            var harness         = data.Item.harness;
-
-            speechOutput = "Here's your test resuilts:   On " + date  + ", the " + harness + " harness had a pass percentage of " + passPercentage;
-            console.log("SPEECH OUTPUT:  " + speechOutput);
-            response.tellWithCard(speechOutput, "Testify", speechOutput);
-        }
-    });
-    */
 }
-
-
 
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {
-    // Create an instance of the Testify skill.
+    // Create an instance of the Testify src.
     var testify = new Testify();
     testify.execute(event, context);
 };
 
+//# sourceMappingURL=index-compiled.js.map

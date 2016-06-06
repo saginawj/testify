@@ -1,6 +1,13 @@
 # testify
 App that uses external triggers (e.g. AWS IoT Button, Alexa) to run AWS code and publish results back to the physical world via IFTTT.
 
+## Overview
+
+The project consists of several sub-projects, each located in the 'apps' folder.
+
+Each app is a lambda function that deploys independently to AWS Lambda.  As such, each will have its own 
+package.json file and node_modules dependencies folder.
+
 ## Installation
 
 Install the code from github and switch to the project folder.
@@ -30,4 +37,4 @@ Replace ifttt key with correct IFTTT Key
 
 ## Contributors
 
-- Jon Saginaw / jonathan.m.saginaw@accenture.com - Asset Lead
+- Jon Saginaw / jonathan.m.saginaw@accenture.com - Owner
