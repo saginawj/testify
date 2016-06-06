@@ -1,4 +1,3 @@
-//these files have changed
 var _                   = require('lodash');
 var PropertiesReader    = require('properties-reader');
 var AWS                 = require('aws-sdk');
