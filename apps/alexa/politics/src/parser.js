@@ -48,11 +48,21 @@ var json = [
     }
 ];
 
+var paginationSize = 3;
+var i = undefined;
+var issues = {};
+issues.index = paginationSize;
+
 var count = json.length;
 console.log("count: ", count);
 var first = json[0].body;
 
+for(i=0; i<count; i++){
+    issues[i] = json[i].body;
+}
 
-console.log(first);
+console.log(issues);
+
+
 
 
