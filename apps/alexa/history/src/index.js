@@ -38,7 +38,7 @@
 /**
  * App ID for the skill
  */
-var APP_ID = undefined; //replace with 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';
+var APP_ID = 'amzn1.echo-sdk-ams.app.f8991706-f320-4960-9b1d-5f1ffb9d899b'; 
 
 var https = require('https');
 
