@@ -36,7 +36,7 @@
 
 
 //TODO move to properties file
-var APP_ID = 'amzn1.echo-sdk-ams.app.f8991706-f320-4960-9b1d-5f1ffb9d899b';
+var APP_ID = 'amzn1.echo-sdk-ams.app.150d504d-a9bd-40b7-8631-b1c931c812d6';
 
 var https = require('https');
 
