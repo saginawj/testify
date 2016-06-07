@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "SSML",
+      "ssml": "<speak><p>History buff.</p> <p>What day do you want events for?</p></speak>"
+    },
+    "card": {
+      "content": "History Buff. What day do you want events for?",
+      "title": "This Day in History",
+      "type": "Simple"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": "With History Buff, you can get historical events for any day of the year.  For example, you could say today, or August thirtieth. Now, which day do you want?"
+      }
+    },
+    "shouldEndSession": false
+  },
+  "sessionAttributes": {}
+}
