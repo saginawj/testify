@@ -3,6 +3,7 @@ var PropertiesReader    = require('properties-reader');
 var AWS                 = require('aws-sdk');
 var AlexaSkill          = require('./AlexaSkill');
 AWS.config.update({region:'us-east-1'});
+//update
 
 
 var properties  = PropertiesReader('properties.txt');
