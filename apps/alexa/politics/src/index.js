@@ -34,8 +34,6 @@
  * Alexa: "Good bye!"
  */
 
-
-//TODO move to properties file
 var APP_ID = 'amzn1.echo-sdk-ams.app.150d504d-a9bd-40b7-8631-b1c931c812d6';
 
 var https = require('https');
@@ -46,13 +44,19 @@ var https = require('https');
 var AlexaSkill = require('./AlexaSkill');
 
 /**
- * URL prefix to download history content from Wikipedia
+ * URL prefix for Whitehouse
  */
-var urlPrefix = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&explaintext=&exsectionformat=plain&redirects=&titles=';
+//TODO concatenate with 2 params vs. full call
+var urlPrefix = "https://www.whitehouse.gov/facts/json/:";
+var urlType = "whatsnext";
+var urlCategory = "education";
+    "whatsnext/education";
+//var urlPrefix = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&explaintext=&exsectionformat=plain&redirects=&titles=';
 
 /**
  * Variable defining number of events to be read at one time
  */
+//TODO change pagination to 1 from 3
 var paginationSize = 3;
 
 /**
@@ -140,13 +144,10 @@ HistoryBuffSkill.prototype.intentHandlers = {
  */
 
 function getWelcomeResponse(response) {
-    // If we wanted to initialize the session to have some attributes we could add those here.
-    var cardTitle = "This Day in History";
-    var repromptText = "With History Buff, you can get historical events for any day of the year.  For example, you could say today, or August thirtieth. Now, which day do you want?";
-    var speechText = "<p>History buff.</p> <p>What day do you want events for?</p>";
-    var cardOutput = "History Buff. What day do you want events for?";
-    // If the user either does not reply to the welcome message or says something that is not
-    // understood, they will be prompted again with this text.
+    var cardTitle = "Whitehouse Progress";
+    var repromptText = "With What's Up, Obama, you can ask President Obama about political progress at the White House.  For example, you can ask about education or economy.  What category would you like?";
+    var speechText = "<p>What's Up, Obama.</p> <p>What category would you like?  The five categories are education, economy, energy, healthcare, or tax cuts?</p>";
+    var cardOutput = "What's Up, Obama. What category would you like information about?";
 
     var speechOutput = {
         speech: "<speak>" + speechText + "</speak>",
