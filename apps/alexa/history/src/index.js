@@ -258,6 +258,7 @@ function handleNextEventRequest(intent, session, response) {
 
 function getJsonEventsFromWikipedia(day, date, eventCallback) {
     var url = urlPrefix + day + '_' + date;
+    console.log("**URL** " + url);
 
     https.get(url, function(res) {
         var body = '';
@@ -267,6 +268,7 @@ function getJsonEventsFromWikipedia(day, date, eventCallback) {
         });
 
         res.on('end', function () {
+            //console.log("**RESPONSE BODY** ", body);
             var stringResult = parseJson(body);
             eventCallback(stringResult);
         });
@@ -282,6 +284,7 @@ function parseJson(inputText) {
         retString = "",
         endIndex,
         startIndex = 0;
+    //console.log("**PARSE TEXT** ", text);
 
     if (text.length == 0) {
         return retArr;
