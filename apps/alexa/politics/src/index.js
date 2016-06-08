@@ -1,5 +1,6 @@
 /*
 *Calls out to https://www.whitehouse.gov/facts/json/all/{caegory}
+* Description of API: https://www.whitehouse.gov/developers/policy-snapshots-json-feed
 * Returns list of policies in that category
 * Defaults to all categories
  */
@@ -24,7 +25,7 @@ var urlPrefix = "https://www.whitehouse.gov/facts/json/";  //sample is: https://
  * Variable defining number of events to be read at one time
  */
 //TODO change pagination to 1 from 3
-var paginationSize = 3;
+var paginationSize = 1;
 
 /**
  * Variable defining the length of the delimiter between events
@@ -138,7 +139,7 @@ function handleFirstEventRequest(intent, session, response) {
 
     console.log("**CATEGORY** ", category);
 
-    var prefixContent = "<p>Here are the latest policies</p>";
+    var prefixContent = "<p>Here are the latest policies for " + category + "</p>";
     //var prefixContent = "<p>For " + category + ", here is the latest news" + ", </p>";
     var cardContent = "New policies";
 
