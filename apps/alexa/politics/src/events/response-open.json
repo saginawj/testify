@@ -3,17 +3,17 @@
   "response": {
     "outputSpeech": {
       "type": "SSML",
-      "ssml": "<speak><p>History buff.</p> <p>What day do you want events for?</p></speak>"
+      "ssml": "<speak><p>What's Up, Obama.</p> <p>What category would you like?  The five categories are education, economy, energy, healthcare, or tax cuts?</p></speak>"
     },
     "card": {
-      "content": "History Buff. What day do you want events for?",
-      "title": "This Day in History",
+      "content": "What's Up, Obama. What category would you like information about?",
+      "title": "Whitehouse Progress",
       "type": "Simple"
     },
     "reprompt": {
       "outputSpeech": {
         "type": "PlainText",
-        "text": "With History Buff, you can get historical events for any day of the year.  For example, you could say today, or August thirtieth. Now, which day do you want?"
+        "text": "With What's Up, Obama, you can ask President Obama about political progress at the White House.  For example, you can ask about education or economy.  What category would you like?"
       }
     },
     "shouldEndSession": false

@@ -1,41 +1,9 @@
-/**
-    Copyright 2014-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
-    Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
-
-        http://aws.amazon.com/apache2.0/
-
-    or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-*/
-
-/**
- * This sample shows how to create a Lambda function for handling Alexa Skill requests that:
- *
- * - Web service: communicate with an external web service to get events for specified days in history (Wikipedia API)
- * - Pagination: after obtaining a list of events, read a small subset of events and wait for user prompt to read the next subset of events by maintaining session state
- * - Dialog and Session state: Handles two models, both a one-shot ask and tell model, and a multi-turn dialog model.
- * - SSML: Using SSML tags to control how Alexa renders the text-to-speech.
- *
- * Examples:
- * One-shot model:
- * User:  "Alexa, ask History Buff what happened on August thirtieth."
- * Alexa: "For August thirtieth, in 2003, [...] . Wanna go deeper in history?"
- * User: "No."
- * Alexa: "Good bye!"
- *
- * Dialog model:
- * User:  "Alexa, open History Buff"
- * Alexa: "History Buff. What day do you want events for?"
- * User:  "August thirtieth."
- * Alexa: "For August thirtieth, in 2003, [...] . Wanna go deeper in history?"
- * User:  "Yes."
- * Alexa: "In 1995, Bosnian war [...] . Wanna go deeper in history?"
- * User: "No."
- * Alexa: "Good bye!"
+/*
+*Calls out to https://www.whitehouse.gov/facts/json/all/{caegory}
+* Returns list of policies in that category
+* Defaults to all categories
  */
 
-
-//TODO move to properties file
 var APP_ID = 'amzn1.echo-sdk-ams.app.150d504d-a9bd-40b7-8631-b1c931c812d6';
 
 var https = require('https');
@@ -46,13 +14,16 @@ var https = require('https');
 var AlexaSkill = require('./AlexaSkill');
 
 /**
- * URL prefix to download history content from Wikipedia
+ * URL prefix for Whitehouse
  */
-var urlPrefix = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&explaintext=&exsectionformat=plain&redirects=&titles=';
+//TODO concatenate with 2 params vs. full call
+var urlPrefix = "https://www.whitehouse.gov/facts/json/";  //sample is: https://www.whitehouse.gov/facts/json/whatsnext/education
+//var urlPrefix = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&explaintext=&exsectionformat=plain&redirects=&titles=';
 
 /**
  * Variable defining number of events to be read at one time
  */
+//TODO change pagination to 1 from 3
 var paginationSize = 3;
 
 /**
@@ -60,25 +31,18 @@ var paginationSize = 3;
  */
 var delimiterSize = 2;
 
-/**
- * HistoryBuffSkill is a child of AlexaSkill.
- * To read more about inheritance in JavaScript, see the link below.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#Inheritance
- */
+var defaultCategory = "all";
+
 var HistoryBuffSkill = function() {
     AlexaSkill.call(this, APP_ID);
 };
 
-// Extend AlexaSkill
 HistoryBuffSkill.prototype = Object.create(AlexaSkill.prototype);
 HistoryBuffSkill.prototype.constructor = HistoryBuffSkill;
 
 HistoryBuffSkill.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
     console.log("HistoryBuffSkill onSessionStarted requestId: " + sessionStartedRequest.requestId
         + ", sessionId: " + session.sessionId);
-
-    // any session init logic would go here
 };
 
 HistoryBuffSkill.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
@@ -89,8 +53,6 @@ HistoryBuffSkill.prototype.eventHandlers.onLaunch = function (launchRequest, ses
 HistoryBuffSkill.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
     console.log("onSessionEnded requestId: " + sessionEndedRequest.requestId
         + ", sessionId: " + session.sessionId);
-
-    // any session cleanup logic would go here
 };
 
 HistoryBuffSkill.prototype.intentHandlers = {
@@ -104,9 +66,9 @@ HistoryBuffSkill.prototype.intentHandlers = {
     },
 
     "AMAZON.HelpIntent": function (intent, session, response) {
-        var speechText = "With History Buff, you can get historical events for any day of the year.  " +
-            "For example, you could say today, or August thirtieth, or you can say exit. Now, which day do you want?";
-        var repromptText = "Which day do you want?";
+        var speechText = "With What's Up, Obama, you can get information about policy topics at the White House.  " +
+            "For example, you could say economics, or education. Now, which day do you want?";
+        var repromptText = "Which category do you want?";
         var speechOutput = {
             speech: speechText,
             type: AlexaSkill.speechOutputType.PLAIN_TEXT
@@ -135,18 +97,11 @@ HistoryBuffSkill.prototype.intentHandlers = {
     }
 };
 
-/**
- * Function to handle the onLaunch skill behavior
- */
-
 function getWelcomeResponse(response) {
-    // If we wanted to initialize the session to have some attributes we could add those here.
-    var cardTitle = "This Day in History";
-    var repromptText = "With History Buff, you can get historical events for any day of the year.  For example, you could say today, or August thirtieth. Now, which day do you want?";
-    var speechText = "<p>History buff.</p> <p>What day do you want events for?</p>";
-    var cardOutput = "History Buff. What day do you want events for?";
-    // If the user either does not reply to the welcome message or says something that is not
-    // understood, they will be prompted again with this text.
+    var cardTitle = "What's Up, Obama?";
+    var repromptText = "With What's Up, Obama, you can ask President Obama about political progress at the White House.  Just ask: What's up with with economy?  or What's up with Education.  What category would you like?";
+    var speechText = "<p>What's Up, Obama.</p> <p>What category would you like?  The five categories are education, economy, energy, healthcare, or tax cuts?</p>";
+    var cardOutput = "What's Up, Obama. What category would you like information about?";
 
     var speechOutput = {
         speech: "<speak>" + speechText + "</speak>",
@@ -163,36 +118,41 @@ function getWelcomeResponse(response) {
  * Gets a poster prepares the speech to reply to the user.
  */
 function handleFirstEventRequest(intent, session, response) {
-    var daySlot = intent.slots.day;
-    var repromptText = "With History Buff, you can get historical events for any day of the year.  For example, you could say today, or August thirtieth. Now, which day do you want?";
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-                      "July", "August", "September", "October", "November", "December"
-    ];
+    //console.log("**INTENTS** ", intent);
+    var categorySlot = intent.slots.category;
+    var category = "";
+    var repromptText = "With What's Up, Obama, you can ask President Obama about political progress at the White House.  For example, you can ask about education or economy.  What category would you like?";
+
     var sessionAttributes = {};
     // Read the first 3 events, then set the count to 3
     sessionAttributes.index = paginationSize;
-    var date = "";
 
     // If the user provides a date, then use that, otherwise use today
     // The date is in server time, not in the user's time zone. So "today" for the user may actually be tomorrow
-    if (daySlot && daySlot.value) {
-        date = new Date(daySlot.value);
+    console.log("**CATEGORY SLOT** ", categorySlot);
+    if (categorySlot && categorySlot.value) {
+        category = categorySlot.value;
     } else {
-        date = new Date();
+        category = defaultCategory;
     }
 
-    var prefixContent = "<p>For " + monthNames[date.getMonth()] + " " + date.getDate() + ", </p>";
-    var cardContent = "For " + monthNames[date.getMonth()] + " " + date.getDate() + ", ";
+    console.log("**CATEGORY** ", category);
 
-    var cardTitle = "Events on " + monthNames[date.getMonth()] + " " + date.getDate();
+    var prefixContent = "<p>Here are the latest policies</p>";
+    //var prefixContent = "<p>For " + category + ", here is the latest news" + ", </p>";
+    var cardContent = "New policies";
 
-    getJsonEventsFromWikipedia(monthNames[date.getMonth()], date.getDate(), function (events) {
+    var cardTitle = "Categories in " + category;
+
+    getJsonEventsFromWikipedia(category, function (events) {
+        //console.log("**EVENTS** ", events);
         var speechText = "",
             i;
-        sessionAttributes.text = events;
+        sessionAttributes = events;
+        //sessionAttributes.text = events;
         session.attributes = sessionAttributes;
         if (events.length == 0) {
-            speechText = "There is a problem connecting to Wikipedia at this time. Please try again later.";
+            speechText = "There is a problem connecting to White House dot gov at this time. Please try again later.";
             cardContent = speechText;
             response.tell(speechText);
         } else {
@@ -200,7 +160,7 @@ function handleFirstEventRequest(intent, session, response) {
                 cardContent = cardContent + events[i] + " ";
                 speechText = "<p>" + speechText + events[i] + "</p> ";
             }
-            speechText = speechText + " <p>Wanna go deeper in history?</p>";
+            speechText = speechText + " <p>Want another policy topic?</p>";
             var speechOutput = {
                 speech: "<speak>" + prefixContent + speechText + "</speak>",
                 type: AlexaSkill.speechOutputType.SSML
@@ -218,18 +178,19 @@ function handleFirstEventRequest(intent, session, response) {
  * Gets a poster prepares the speech to reply to the user.
  */
 function handleNextEventRequest(intent, session, response) {
-    var cardTitle = "More events on this day in history",
+    var cardTitle = "More policies",
         sessionAttributes = session.attributes,
-        result = sessionAttributes.text,
+        result = sessionAttributes;
+        //result = sessionAttributes.text,
         speechText = "",
         cardContent = "",
-        repromptText = "Do you want to know more about what happened on this date?",
+        repromptText = "Do you want to know more about what happened in this category?",
         i;
     if (!result) {
-        speechText = "With History Buff, you can get historical events for any day of the year.  For example, you could say today, or August thirtieth. Now, which day do you want?";
+        speechText = "With What's Up, Obama, you can get the latest political news.   What category do you want?";
         cardContent = speechText;
     } else if (sessionAttributes.index >= result.length) {
-        speechText = "There are no more events for this date. Try another date by saying <break time = \"0.3s\"/> get events for august thirtieth.";
+        speechText = "There are no more policies for this category. Try another category by saying <break time = \"0.3s\"/> get policies for education.";
         cardContent = "There are no more events for this date. Try another date by saying, get events for august thirtieth.";
     } else {
         for (i = 0; i < paginationSize; i++) {
@@ -241,8 +202,8 @@ function handleNextEventRequest(intent, session, response) {
             sessionAttributes.index++;
         }
         if (sessionAttributes.index < result.length) {
-            speechText = speechText + " Wanna go deeper in history?";
-            cardContent = cardContent + " Wanna go deeper in history?";
+            speechText = speechText + " Want more policy information?";
+            cardContent = cardContent + " Want more policy information?";
         }
     }
     var speechOutput = {
@@ -256,8 +217,9 @@ function handleNextEventRequest(intent, session, response) {
     response.askWithCard(speechOutput, repromptOutput, cardTitle, cardContent);
 }
 
-function getJsonEventsFromWikipedia(day, date, eventCallback) {
-    var url = urlPrefix + day + '_' + date;
+//TODO pass in category and type
+function getJsonEventsFromWikipedia(category, eventCallback) {
+    var url = urlPrefix + "all/" + category;
     console.log("**URL** " + url);
 
     https.get(url, function(res) {
@@ -277,7 +239,23 @@ function getJsonEventsFromWikipedia(day, date, eventCallback) {
     });
 }
 
-function parseJson(inputText) {
+//TODO add parsing logic from parser.js
+function parseJson(inputText){
+
+    var issues = {};
+    issues.index = paginationSize;
+    var json = JSON.parse(inputText);
+    var count = json.length;
+    console.log("**EVENT COUNT** ", count);
+
+    for(i=0; i<count; i++) {
+        issues[i] = json[i].body;
+    }
+    return issues;
+}
+
+//TODO remove old parser
+function parseJsonOld(inputText) {
     // sizeOf (/nEvents/n) is 10
     var text = inputText.substring(inputText.indexOf("\\nEvents\\n")+10, inputText.indexOf("\\n\\n\\nBirths")),
         retArr = [],

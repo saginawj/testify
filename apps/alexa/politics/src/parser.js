@@ -1,0 +1,68 @@
+var _ = require("lodash");
+
+var json = [
+    {
+        "category":"Education",
+        "uid":"150799",
+        "body":"Improved access to and quality of early education so every child is prepared to start school.",
+        "url":"http:\/\/www.whitehouse.gov\/sites\/default\/files\/docs\/education_record.pdf",
+        "url_title":"improving early childhood education",
+        "type":"Progress",
+        "path":"node\/153769"
+    },
+    {
+        "category":"Education",
+        "uid":"150805",
+        "body":"Challenged states to develop innovative approaches to raise student achievement through a competitive process that costs less than 1% of what our nation spends on education.",
+        "url":"http:\/\/www.whitehouse.gov\/issues\/education\/k-12\/race-to-the-top",
+        "url_title":"Race to the Top",
+        "type":"Progress",
+        "path":"node\/153769"
+    },
+    {
+        "category":"Education",
+        "uid":"150817",
+        "body":"Provided 33 states and the District of Columbia flexibility from No Child Left Behind while raising student achievement standards, improving school accountability, and increasing teacher effectiveness.",
+        "url":"http:\/\/www.whitehouse.gov\/blog\/2012\/02\/09\/everything-you-need-know-waivers-flexibility-and-reforming-no-child-left-behind",
+        "url_title":"No Child Left Behind  flexibility waivers",
+        "type":"Progress",
+        "path":"node\/153769"
+    },
+    {
+        "category":"Education",
+        "uid":"150823",
+        "body":"Supported grants to help states transform the 5,000 lowest performing schools in the country into safe environments where students can learn",
+        "url":"http:\/\/www.whitehouse.gov\/sites\/default\/files\/docs\/education_record.pdf",
+        "url_title":"Title I School Improvement Grants",
+        "type":"Progress",
+        "path":"node\/153769"
+    },
+    {
+        "category":"Education",
+        "uid":"150835",
+        "body":"Provided relief to states that helped keep hundreds of thousands of teachers on the job in the face of budget cuts and proposed funding to support additional education jobs.",
+        "url":"http:\/\/www.whitehouse.gov\/the-press-office\/2012\/08\/18\/new-report-highlights-impacts-teacher-layoffs-need-invest-education",
+        "url_title":"keeping teachers on the job",
+        "type":"Progress",
+        "path":"node\/153769"
+    }
+];
+
+var paginationSize = 3;
+var i = undefined;
+var issues = {};
+issues.index = paginationSize;
+
+var count = json.length;
+console.log("count: ", count);
+var first = json[0].body;
+
+for(i=0; i<count; i++){
+    issues[i] = json[i].body;
+}
+
+console.log(issues);
+
+
+
+
