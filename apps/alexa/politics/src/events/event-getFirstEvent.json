@@ -1,24 +1,25 @@
 {
   "session": {
-    "sessionId": "SessionId.769a3408-1e1b-4708-89b5-dd061a59fe0f",
+    "sessionId": "SessionId.e493a3e9-0735-4592-b9d3-34bd0c4c4353",
     "application": {
-      "applicationId": "amzn1.echo-sdk-ams.app.f8991706-f320-4960-9b1d-5f1ffb9d899b"
+      "applicationId": "amzn1.echo-sdk-ams.app.150d504d-a9bd-40b7-8631-b1c931c812d6"
     },
+    "attributes": {},
     "user": {
-      "userId": "amzn1.ask.account.AFP3ZWPOS2BGJR7OWJZ3DHPKMOMNWY4AY66FUR7ILBWANIHQN73QHJS2CUIKVZTJ3MMOKYQXRKNYMKTOSRCCWXZ5CHRUVUBGIMVZ2HVHOGSWQ5DRZ6Z5UZQDQJFW43CHY7HLNO2LX7IY6PRNA4LS7MQOACXCWLJMZBJ7ZSKV2JMXYPXBA73FPMGBR6QF3UESAZL4GDTWBRH5FTQ"
+      "userId": "amzn1.ask.account.AFP3ZWPOS2BGJR7OWJZ3DHPKMOMNWY4AY66FUR7ILBWANIHQN73QGYCJ3GMVKYUPPDBQXQZTWFB3V75D2GGQOEFTTUQBEOMJP6WBS6MNGHBMHS2DFGFUSC4HYSYCT62PXMCLJMI46JB33V6O2JXGF6JM7H3ID5VCTILBTGCC7P4IRNA66FMCMFFHVWVXMRGUGAWHZRN2LG7WXGI"
     },
-    "new": true
+    "new": false
   },
   "request": {
     "type": "IntentRequest",
-    "requestId": "EdwRequestId.543d8473-c3e0-4c92-b6ef-59ff548b5594",
-    "timestamp": "2016-06-07T14:53:13Z",
+    "requestId": "EdwRequestId.025b8eb8-cd76-460d-8bc1-6ab7e0a9939d",
+    "timestamp": "2016-06-08T01:51:39Z",
     "intent": {
       "name": "GetFirstEventIntent",
       "slots": {
-        "day": {
-          "name": "day",
-          "value": "2016-10-09"
+        "category": {
+          "name": "category",
+          "value": "economy"
         }
       }
     },
