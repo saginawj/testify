@@ -47,10 +47,7 @@ var AlexaSkill = require('./AlexaSkill');
  * URL prefix for Whitehouse
  */
 //TODO concatenate with 2 params vs. full call
-var urlPrefix = "https://www.whitehouse.gov/facts/json/:";
-var urlType = "whatsnext";
-var urlCategory = "education";
-    "whatsnext/education";
+var urlPrefix = "https://www.whitehouse.gov/facts/json/";  //sample is: https://www.whitehouse.gov/facts/json/whatsnext/education
 //var urlPrefix = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&explaintext=&exsectionformat=plain&redirects=&titles=';
 
 /**
@@ -81,8 +78,6 @@ HistoryBuffSkill.prototype.constructor = HistoryBuffSkill;
 HistoryBuffSkill.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
     console.log("HistoryBuffSkill onSessionStarted requestId: " + sessionStartedRequest.requestId
         + ", sessionId: " + session.sessionId);
-
-    // any session init logic would go here
 };
 
 HistoryBuffSkill.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {

@@ -1,8 +1,8 @@
-GetFirstEventIntent get events for {day}
-GetFirstEventIntent give me events for {day}
-GetFirstEventIntent what happened on {day}
+GetFirstEventIntent get events for {category}
+GetFirstEventIntent give me events for {category}
+GetFirstEventIntent what happened on {category}
 GetFirstEventIntent what happened
-GetFirstEventIntent {day}
+GetFirstEventIntent {category}
 
 GetNextEventIntent yes
 GetNextEventIntent yup
