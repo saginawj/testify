@@ -1,0 +1,6 @@
+economy
+education
+college
+environment
+healthcare
+tax cuts

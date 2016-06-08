@@ -1,7 +1,8 @@
-GetFirstEventIntent get events for {category}
-GetFirstEventIntent give me events for {category}
-GetFirstEventIntent what happened on {category}
-GetFirstEventIntent what happened
+GetFirstEventIntent new policies for {category}
+GetFirstEventIntent what's up with {category}
+GetFirstEventIntent what happening with {category}
+GetFirstEventIntent get policies for {category}
+GetFirstEventIntent about {category}
 GetFirstEventIntent {category}
 
 GetNextEventIntent yes
