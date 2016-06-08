@@ -61,7 +61,7 @@ var paginationSize = 3;
 var delimiterSize = 2;
 
 /**
- * HistoryBuffSkill is a child of AlexaSkill.
+ * PoliticsSkill is a child of AlexaSkill.
  * To read more about inheritance in JavaScript, see the link below.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#Inheritance
@@ -75,14 +75,14 @@ HistoryBuffSkill.prototype = Object.create(AlexaSkill.prototype);
 HistoryBuffSkill.prototype.constructor = HistoryBuffSkill;
 
 HistoryBuffSkill.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
-    console.log("HistoryBuffSkill onSessionStarted requestId: " + sessionStartedRequest.requestId
+    console.log("PoliticsSkill onSessionStarted requestId: " + sessionStartedRequest.requestId
         + ", sessionId: " + session.sessionId);
 
     // any session init logic would go here
 };
 
 HistoryBuffSkill.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
-    console.log("HistoryBuffSkill onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
+    console.log("PoliticsSkill onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
     getWelcomeResponse(response);
 };
 
