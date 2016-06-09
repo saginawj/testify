@@ -7,16 +7,9 @@ AWS.config.update({region:'us-east-1'});
 
 
 var properties  = PropertiesReader('properties.txt');
-var APP_ID      = properties.get('stuff.ifttt.key');  //"amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1";
+var APP_ID      = properties.get('stuff.ifttt.key');
 
 console.log(APP_ID);
-
-//TODO: remove default strings and events 
-var MY_FACTS = [
-    "This is Fact 1.",
-    "This is Fact 2.",
-    "This is Fact 3."
-];
 
 var Testify = function () {
     AlexaSkill.call(this, APP_ID);
@@ -156,15 +149,6 @@ function handleCheckTestingStatusRequest(response) {
             var id = a.id;
             var harness = a.harness;
             var passpercentage = a.passpercentage;
-
-
-            /*
-            //var count = data.Items.length -1;
-            //var date = data.Items[count].date;
-            //var id = data.Items[count].id;
-            //var harness = data.Items[count].harness;
-            //var passpercentage = data.Items[count].passpercentage;
-            */
 
             //console.log(data);
             console.log("Date: ", date);

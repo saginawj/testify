@@ -1,0 +1,37 @@
+{
+  "Records": [
+    {
+      "eventID": "fbac197c05f4c4d0d92a6713cc6e9855",
+      "eventName": "INSERT",
+      "eventVersion": "1.1",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "us-east-1",
+      "dynamodb": {
+        "ApproximateCreationDateTime": 1465508760,
+        "Keys": {
+          "id": {
+            "S": "16270183-0b65-407b-9b96-7c039d51c64d"
+          }
+        },
+        "NewImage": {
+          "date": {
+            "S": "Thursday, June 9th, 9:46 PM"
+          },
+          "harness": {
+            "S": "regression"
+          },
+          "id": {
+            "S": "16270183-0b65-407b-9b96-7c039d51c64d"
+          },
+          "passpercentage": {
+            "N": "93"
+          }
+        },
+        "SequenceNumber": "51706000000000005610951250",
+        "SizeBytes": 140,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+      },
+      "eventSourceARN": "arn:aws:dynamodb:us-east-1:821121332838:table/testResultsTable/stream/2016-05-29T21:10:47.145"
+    }
+  ]
+}
