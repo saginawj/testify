@@ -1,7 +1,8 @@
-var assert  = require('assert');
-var AWS     = require('aws-sdk');
-var http    = require('http');
-var _       = require('lodash');
+var assert      = require('assert');
+var dateFormat  = require('dateformat');
+var AWS         = require('aws-sdk');
+var http        = require('http');
+var _           = require('lodash');
 
 AWS.config.update({region: "us-east-1"});
 
@@ -59,8 +60,8 @@ exports.handler = function(event, context) {
 
         var tableName = 'testResultsTable';
 
-        var d = new Date();
-        var date = d.toUTCString();
+        var now = new Date();
+        now = dateFormat(now, "dddd, mmmm dS, h:MM TT");
         var harness = 'regression';
         var passpercent = _.random(100);
 
@@ -70,7 +71,7 @@ exports.handler = function(event, context) {
             TableName : tableName,
             Item: {
                 id: jobId,
-                date: date,
+                date: now,
                 harness: harness,
                 passpercentage: passpercent
             }

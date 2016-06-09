@@ -16,8 +16,11 @@
   "dependencies": {
     "aws": "0.0.3-2",
     "aws-sdk": "^2.3.16",
+    "dateformat": "^1.0.12",
     "lodash": "^4.13.1",
-    "node-lambda": "^0.8.5",
     "properties-reader": "0.0.15"
+  },
+  "devDependencies": {
+    "node-lambda": "^0.8.5"
   }
 }
