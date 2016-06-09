@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": "Here's your test results:   On Wed, 08 Jun 2016 13:53:51 GMT, the regression harness had a pass percentage of 80"
+    },
+    "card": {
+      "content": "Here's your test results:   On Wed, 08 Jun 2016 13:53:51 GMT, the regression harness had a pass percentage of 80",
+      "title": "Testify",
+      "type": "Simple"
+    },
+    "shouldEndSession": true
+  },
+  "sessionAttributes": {}
+}

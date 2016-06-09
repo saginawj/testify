@@ -34,10 +34,7 @@ Testify.prototype.eventHandlers.onSessionStarted = function (sessionStartedReque
 
 Testify.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
     console.log("Testify onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
-    handleNewFactRequest(response);
-    //TODO likely to remove these.  I dont want to execute these at launch
-    handleStartTestingRequest(response);
-    handleCheckTestingStatusRequest(response);
+    handleOpenRequest(response);
 };
 
 /**
@@ -51,7 +48,7 @@ Testify.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, 
 
 Testify.prototype.intentHandlers = {
     "GetNewFactIntent": function (intent, session, response) {
-        handleNewFactRequest(response);
+        handleOpenRequest(response);
     },
 
     //adding second event handler
@@ -81,17 +78,21 @@ Testify.prototype.intentHandlers = {
 /**
  * Gets a random new fact from the list and returns to the user.
  */
-function handleNewFactRequest(response) {
-    // Get a random animal fact from the animals facts list
-    var factIndex = Math.floor(Math.random() * MY_FACTS.length);
-    var fact = MY_FACTS[factIndex];
+function handleOpenRequest(response) {
+    var cardTitle = "Testify";
+    var repromptText = "You can say things like, Run the Test Harness.   Or, What's the status of the deployment?";
+    var speechText = "<p>Testify.</p> <p>Would you like to execute a test harness, or get the status of a test harness?</p>";
+    var cardOutput = "Welcome to Testify, your home for automated testing?";
 
-    // Create speech output
-    var speechOutput = "Here's your animal fact: " + fact;
-
-    console.log("Fact:  " + fact);
-
-    response.tellWithCard(speechOutput, "AnimalFacts", speechOutput);
+    var speechOutput = {
+        speech: "<speak>" + speechText + "</speak>",
+        type: AlexaSkill.speechOutputType.SSML
+    };
+    var repromptOutput = {
+        speech: repromptText,
+        type: AlexaSkill.speechOutputType.PLAIN_TEXT
+    };
+    response.askWithCard(speechOutput, repromptOutput, cardTitle, cardOutput);
 }
 
 //This will eventually kickoff the Code Deployment

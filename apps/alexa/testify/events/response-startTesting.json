@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": "Kicking off the testing pipeline now."
+    },
+    "card": {
+      "content": "Kicking off the testing pipeline now.",
+      "title": "Testify",
+      "type": "Simple"
+    },
+    "shouldEndSession": true
+  },
+  "sessionAttributes": {}
+}
