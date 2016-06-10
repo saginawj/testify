@@ -1,0 +1,11 @@
+{
+  "operation": "create",
+  "payload": {
+    "Item": {
+      "id": "34",
+      "date": "May30",
+      "harness": "regression",
+      "passpercentage": "56",
+    }
+  }
+}
