@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.3.19"
+    "aws-sdk": "^2.3.19",
+    "dynamodb-doc": "^1.0.0"
   },
   "devDependencies": {
     "node-lambda": "^0.8.5"
