@@ -5,6 +5,7 @@ var dynamodb = new AWS.DynamoDB();
 exports.handler = function(event, context) {
     console.log("Request received:\n", JSON.stringify(event));
     console.log("Context received:\n", JSON.stringify(context));
+    console.log("EVENT:  ", event);
 
     var tableName = "sampleTable";
     var datetime = new Date().getTime().toString();
