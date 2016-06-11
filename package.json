@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/saginawj/testify#readme",
   "dependencies": {
-    "lodash": "^4.13.1"
+    "lodash": "^4.13.1",
+    "mocha": "^2.5.3"
   }
 }
