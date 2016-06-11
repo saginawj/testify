@@ -63,8 +63,8 @@ PoliticsSkill.prototype.intentHandlers = {
     },
 
     "AMAZON.HelpIntent": function (intent, session, response) {
-        var speechText = "With What's Up, Obama, you can get information about policy topics at the White House.  " +
-            "For example, you could say economics, or education. Now, which day do you want?";
+        var speechText = "With Washington Insider, you can get information about policy topics at the White House.  " +
+            "For example, you could say, tell me about economics, or tell me about education. Now, which day do you want?";
         var repromptText = "Which category do you want?";
         var speechOutput = {
             speech: speechText,
@@ -95,10 +95,10 @@ PoliticsSkill.prototype.intentHandlers = {
 };
 
 function getWelcomeResponse(response) {
-    var cardTitle = "What's Up, Obama?";
-    var repromptText = "With What's Up, Obama, you can ask President Obama about political progress at the White House.  Just ask: What's up with economy?  The categories are economy, education, taxes, healthcare, and environment";
-    var speechText = "<p>What's Up, Obama.</p> <p>What category would you like?  The five categories are education, economy, environment, healthcare, and taxes?</p>";
-    var cardOutput = "What's Up, Obama. What category would you like information about?";
+    var cardTitle = "Washington Insider?";
+    var repromptText = "With Washington Insider, you can ask the White House about political progress in America.  Just ask: What's up with economy?  The categories are economy, education, and healthcare.";
+    var speechText = "<p>Washington Insider.</p> <p>What category would you like?  The three categories are education, economy, and healthcare?</p>";
+    var cardOutput = "Washington Insider. What category would you like information about?";
 
     var speechOutput = {
         speech: "<speak>" + speechText + "</speak>",
@@ -115,8 +115,7 @@ function handleFirstEventRequest(intent, session, response) {
     //console.log("**INTENTS** ", intent);
     var categorySlot = intent.slots.category;
     var category = "";
-    var repromptText = "With What's Up, Obama, you can ask President Obama about political progress at the White House.  Just ask: What's up with economy?  The categories are economy, education, taxes, healthcare, and environment";
-
+    var repromptText = "With Washington Insider, you can ask the White House about political progress in America.  Just ask: What's up with economy?  The categories are economy, education, and healthcare.";
     var sessionAttributes = {};
     sessionAttributes.index = paginationSize;
 
@@ -135,11 +134,10 @@ function handleFirstEventRequest(intent, session, response) {
 
     var cardTitle = "Categories in " + category;
 
-    getJsonEventsFromWikipedia(category, function (events) {
+    getJsonEventsFromWhiteHouse(category, function (events) {
         var speechText = "",
             i;
         sessionAttributes = events;
-        //sessionAttributes.text = events;
         session.attributes = sessionAttributes;
         if (events.length == 0) {
             speechText = "There is a problem connecting to White House website at this time. Please try again later.";
@@ -168,26 +166,28 @@ function handleFirstEventRequest(intent, session, response) {
  * Gets a poster prepares the speech to reply to the user.
  */
 function handleNextEventRequest(intent, session, response) {
-    var cardTitle = "More policies",
+    var cardTitle = "More Policies",
         sessionAttributes = session.attributes,
         result = sessionAttributes;
-        //result = sessionAttributes.text,
         speechText = "",
         cardContent = "",
         repromptText = "Do you want to know more about what happened in this category?",
         i;
+    console.log("**RESULT**: ", result);
+
     if (!result) {
-        speechText = "With What's Up, Obama, you can get the latest political news.   What category do you want?";
+        speechText = "With Washington Insider, you can get the latest political news.   What category do you want?";
         cardContent = speechText;
     } else if (sessionAttributes.index >= result.length) {
         speechText = "There are no more policies for this category. Try another category by saying <break time = \"0.3s\"/> get policies for education.";
-        cardContent = "There are no more events for this date. Try another date by saying, get events for august thirtieth.";
+        cardContent = "There are no more policies for this category.  Try another category by saying: get policies for education.";
     } else {
         for (i = 0; i < paginationSize; i++) {
             if (sessionAttributes.index>= result.length) {
                 break;
             }
             speechText = speechText + "<p>" + result[sessionAttributes.index] + "</p> ";
+            speechText = speechText + " <p>Want another policy topic?</p>";
             cardContent = cardContent + result[sessionAttributes.index] + " ";
             sessionAttributes.index++;
         }
@@ -207,7 +207,7 @@ function handleNextEventRequest(intent, session, response) {
     response.askWithCard(speechOutput, repromptOutput, cardTitle, cardContent);
 }
 
-function getJsonEventsFromWikipedia(category, eventCallback) {
+function getJsonEventsFromWhiteHouse(category, eventCallback) {
     var url = urlPrefix + "all/" + category;
     console.log("**URL** " + url);
 
