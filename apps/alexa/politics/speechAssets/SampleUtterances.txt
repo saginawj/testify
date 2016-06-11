@@ -1,7 +1,9 @@
 GetFirstEventIntent new policies for {category}
+GetFirstEventIntent policies about {category}
 GetFirstEventIntent what's up with {category}
-GetFirstEventIntent what happening with {category}
+GetFirstEventIntent what's happening with {category}
 GetFirstEventIntent get policies for {category}
+GetFirstEventIntent about {category}
 GetFirstEventIntent {category}
 
 GetNextEventIntent yes
