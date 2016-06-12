@@ -1,6 +1,8 @@
 # testify
 App that uses external triggers (e.g. AWS IoT Button, Alexa) to run AWS code and publish results back to the physical world via IFTTT.
 
+Adding some nodeclipse sample text.
+
 ## Overview
 
 The project consists of several sub-projects, each located in the 'apps' folder.

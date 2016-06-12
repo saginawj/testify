@@ -5,3 +5,5 @@
 
 var expect = require('chai').expect;
 lambdaToTest = require('../src/index.js');
+
+var test = "test data:'"
