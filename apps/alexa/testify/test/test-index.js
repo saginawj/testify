@@ -1,7 +1,6 @@
-//var chai = require('chai');
-//var chaiHttp = require('chai-http');
-//var should = chai.should();
-//chai.use(chaiHttp);
-
-var expect = require('chai').expect;
-lambdaToTest = require('../src/index.js');
+var assert = require('assert');
+describe('String#split', function(){
+  it('should return an array', function(){
+    assert(Array.isArray('a,b,c'.split(',')));
+  });
+})
