@@ -24,6 +24,7 @@
     "mocha": "^2.5.3"
   },
   "scripts": {
+	  	"build": "echo \"Error: no build specified\" && exit 1"
 	  	"test-unit": "mocha test/test",
 	    "test-integration": "mocha test/test",
 	    "test": "npm run test-unit && npm run test-integration"

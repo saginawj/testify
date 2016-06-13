@@ -11,8 +11,6 @@
   "devDependencies": {
     "aws-lambda-mock-context": "^3.0.0",
     "chai": "^3.5.0",
-    "expect": "^1.20.1",
-    "expect.js": "^0.3.1",
     "mocha": "^2.5.3"
   }
 }
