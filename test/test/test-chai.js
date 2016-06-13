@@ -29,6 +29,7 @@ describe('**BDD Tests with Expect**', function(){
   });
   it('should equal a string', function(){
 	    expect(expectedString).to.equal("helloworld");
+	    
   });
   });
 })
