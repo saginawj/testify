@@ -29,6 +29,6 @@ configdata.json
 #IDE files
 *.env
 .idea/
-*.project
+.project
 event.json
 context.json
