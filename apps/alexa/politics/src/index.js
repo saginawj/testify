@@ -64,7 +64,7 @@ PoliticsSkill.prototype.intentHandlers = {
 
     "AMAZON.HelpIntent": function (intent, session, response) {
         var speechText = "With Washington Insider, you can get information about policy topics at the White House.  " +
-            "For example, you could say, tell me about economics, or tell me about education. Now, which day do you want?";
+            "For example, you could say, tell me about the economy, or tell me about education. Now, which category do you want?";
         var repromptText = "Which category do you want?";
         var speechOutput = {
             speech: speechText,
