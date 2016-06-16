@@ -36,6 +36,9 @@ describe('**BDD Tests with Expect**', function(){
 	  it('should check binary to false', function(){
 		    expect(false).to.not.be.true; 
 	  });
+	  it('should check binary', function(){
+		    expect(true).to.not.be.false; 
+	  });
   });
 })
 
