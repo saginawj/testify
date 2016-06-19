@@ -1,0 +1,18 @@
+GetFirstEventIntent new policies for {category}
+GetFirstEventIntent policies about {category}
+GetFirstEventIntent what's up with {category}
+GetFirstEventIntent what's happening with {category}
+GetFirstEventIntent tell me about {category}
+GetFirstEventIntent get policies for {category}
+GetFirstEventIntent about {category}
+GetFirstEventIntent {category}
+
+GetNextEventIntent yes
+GetNextEventIntent yup
+GetNextEventIntent sure
+GetNextEventIntent yes please
+
+AMAZON.StopIntent no
+AMAZON.StopIntent nope
+AMAZON.StopIntent no thanks
+AMAZON.StopIntent no thank you
