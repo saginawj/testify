@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "SSML",
+      "ssml": "<speak><p>Here are the latest policies for Raya</p><p>Ended more than $60 billion in wasteful subsidies for big banks and used the savings to put the cost of college within reach for more families.</p>  <p>Want another policy topic?</p></speak>"
+    },
+    "card": {
+      "content": "New policiesEnded more than $60 billion in wasteful subsidies for big banks and used the savings to put the cost of college within reach for more families. ",
+      "title": "Categories in Raya",
+      "type": "Simple"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": "With Washington Insider, you can ask the White House about political progress in America.  Just ask: What's up with economy?  The categories are economy, education, and healthcare."
+      }
+    },
+    "shouldEndSession": false
+  },
+  "sessionAttributes": {
+    "0": "Raya fact 1.",
+    "1": "Created and extended a tax credit worth $10,000 over four years that helps 9 million families cover the cost of college.",
+    "2": "Expanded Pell Grants to reach an additional 3 million students and raised the current maximum award to $5,550, up from $4,730 in 2008.",
+    "3": "Capped monthly student loan payments for responsible borrowers who make their payments on time so they aren't held back by debt as they start their careers.",
+    "4": "Created a model financial aid disclosure form that makes the costs and responsibilities of student loans clear before students enroll in college.",
+    "5": "Supported partnerships between community colleges and businesses to train workers with skills local employers need",
+    "6": "Launched a College Scorecard to help students and families compare costs, the amount students borrow in loans, and graduation rates among schools and make informed decisions about which college to attend.",
+    "7": "Rein in college cost by reforming student aid to colleges. Reward schools that set tuition prices responsibly. Schools that do the most to provide students with good long-term value should receive more money to help students attend than schools that don't.&nbsp;",
+    "8": "Improve college quality and value through competition. Invest $1 billion in a competition to provide incentives for colleges to keep costs under control and graduate students on time.",
+    "9": "Prepare workers with skills and credentials employers need. Support programs that train workers for jobs in growing industries like high-tech manufacturing and IT.",
+    "77": "Ensure the wealthiest Americans do their fair share by paying at least the same tax rate as middle class families so we can reduce the deficit in a balanced way while preserving investments in education, clean energy, manufacturing, and small businesses.",
+    "index": 1
+  }
+}

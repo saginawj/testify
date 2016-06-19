@@ -1,0 +1,17 @@
+{
+  "name": "alexa-api",
+  "version": "1.0.0",
+  "description": "Example of an Alexa API skill",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jon Saginaw",
+  "license": "ISC",
+  "devDependencies": {
+    "node-lambda": "^0.8.5"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1"
+  }
+}
