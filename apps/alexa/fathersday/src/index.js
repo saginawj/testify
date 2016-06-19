@@ -95,10 +95,10 @@ PoliticsSkill.prototype.intentHandlers = {
 };
 
 function getWelcomeResponse(response) {
-    var cardTitle = "Washington Insider?";
-    var repromptText = "With Washington Insider, you can ask the White House about political progress in America.  Just ask: What's up with economy?  The categories are economy, education, and healthcare.";
-    var speechText = "<p>Washington Insider.</p> <p>What category would you like?  The three categories are education, economy, and healthcare?</p>";
-    var cardOutput = "Washington Insider. What category would you like information about?";
+    var cardTitle = "Father's Day?";
+    var speechText = "Hi Raya, Ethan, and Sammy.  Welcome to our home.  My name is Alexa, and I'm really happy that you are spending Father's Day with me.  I am glad that you came all the way from New Jersey to see me today.  I learned a few facts about you that I'd like to share.  Who would you like to know about?  Just say Raya.  Or Ethan.  Or Sammy.";
+    var repromptText = "<p>Would you like to know about Raya, or Ethan, or Sammy?";
+    var cardOutput = "Father's Day";
 
     var speechOutput = {
         speech: "<speak>" + speechText + "</speak>",
