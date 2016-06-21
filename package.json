@@ -27,6 +27,6 @@
 	  	"test-unit": "mocha test/test",
 	    "test-integration": "mocha test/test",
 	    "test-integration": "mocha test/test",
-	    "test": "npm run test-unit && npm run test-integration" 
+	    "test": "npm run test-unit && npm run test-integration"
 	  }
 }
