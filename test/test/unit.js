@@ -55,6 +55,7 @@ describe("Tags", function(){
 		       var three = "three";
 		       var four = "four";
 		       var five = "five";
+		       var six = "six";
 	           var result = tags.concat(one, two);
 
 	           expect(result).to.equal("hello world");
