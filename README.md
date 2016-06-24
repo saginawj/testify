@@ -34,6 +34,8 @@ Rename configdata.json.txt to configdata.json
 
 Replace ifttt key with correct IFTTT Key
 
+And other stuff to be added here
+
 ```
 
 
