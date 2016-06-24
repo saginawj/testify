@@ -52,9 +52,9 @@ describe("Tags", function(){
 	       it("should concatenate two strings", function(){
 	    	   var one = "hello";
 		       var two = "world";
-	           
+		       var three = "three";
 	           var result = tags.concat(one, two);
-	           
+
 	           expect(result).to.equal("hello world");
 	       });
 	   });
@@ -73,7 +73,7 @@ describe("Search", function(){
 	               fs.writeFileSync(".test_files/dir2/d", "");
 	           }
 	       });
-	 
+
 	       after(function() {
 	           fs.unlinkSync(".test_files/dir/c");
 	           fs.rmdirSync(".test_files/dir");

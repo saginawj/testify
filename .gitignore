@@ -35,3 +35,4 @@ context.json
 
 #creds
 *.pem
+test.pem
