@@ -1,3 +1,6 @@
+[![Jenkins Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+[![Jenkins Status](http://ec2-54-172-176-131.compute-1.amazonaws.com/jenkins/job/testify-build/badge/icon)]()
+
 # testify
 App that uses external triggers (e.g. AWS IoT Button, Alexa) to run AWS code and publish results back to the physical world via IFTTT.
 
@@ -7,7 +10,7 @@ Adding some nodeclipse sample text.
 
 The project consists of several sub-projects, each located in the 'apps' folder.
 
-Each app is a lambda function that deploys independently to AWS Lambda.  As such, each will have its own 
+Each app is a lambda function that deploys independently to AWS Lambda.  As such, each will have its own
 package.json file and node_modules dependencies folder.
 
 ## Installation
@@ -42,3 +45,4 @@ And other stuff to be added here
 ## Contributors
 
 - Jon Saginaw / jonathan.m.saginaw@accenture.com - Owner
+

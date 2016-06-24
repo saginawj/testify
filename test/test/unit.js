@@ -18,11 +18,11 @@ describe('**TDD Tests with Assert**', function(){
   });
 })
 
-describe('**BDD Tests with Expect**', function(){
+describe('**CCAT Driver Tests**', function(){
   beforeEach(function(){
    current = 1;
   })
-  describe('Basics', function(){
+  describe('Keywork Checks', function(){
 
 	  it('should return a number', function(){
 		  	expect(1).to.equal(1);
