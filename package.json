@@ -7,7 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-unit": "mocha test/test",
+    "test-integration": "mocha test/test",
+    "test": "npm run test-unit && npm run test-integration"
   },
   "repository": {
     "type": "git",
@@ -20,13 +22,8 @@
   },
   "homepage": "https://github.com/saginawj/testify#readme",
   "dependencies": {
+    "chai": "^3.5.0",
     "lodash": "^4.13.1",
     "mocha": "^2.5.3"
-  },
-  "scripts": {
-	  	"test-unit": "mocha test/test",
-	    "test-integration": "mocha test/test",
-	    "test-integration": "mocha test/test",
-	    "test": "npm run test-unit && npm run test-integration"
-	  }
+  }
 }
