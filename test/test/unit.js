@@ -39,6 +39,9 @@ describe('**BDD Tests with Expect**', function(){
 	  it('should check binary', function(){
 		    expect(true).to.not.be.false;
 	  });
+	  it('verify jenkins integration', function(){
+		    expect(true).to.not.be.false;
+	  });
   });
 })
 
