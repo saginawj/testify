@@ -1,5 +1,7 @@
 [![Jenkins Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Jenkins Status](http://ec2-54-172-176-131.compute-1.amazonaws.com/jenkins/job/testify-build/badge/icon)]()
+[![Build Status](http://ec2-54-210-250-245.compute-1.amazonaws.com/jenkins/buildStatus/icon?job=testify-build)](http://ec2-54-210-250-245.compute-1.amazonaws.com/jenkins/job/testify-build/)
+
+[![Build Status](http://ec2-54-172-176-131.compute-1.amazonaws.com/jenkins/buildStatus/icon?job=testify-build)](http://ec2-54-172-176-131.compute-1.amazonaws.com/jenkins/job/testify-build/)
 
 # testify
 App that uses external triggers (e.g. AWS IoT Button, Alexa) to run AWS code and publish results back to the physical world via IFTTT.
