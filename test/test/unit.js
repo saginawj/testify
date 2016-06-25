@@ -18,11 +18,11 @@ describe('**TDD Tests with Assert**', function(){
   });
 })
 
-describe('**BDD Tests with Expect**', function(){
+describe('**CCAT Driver Tests**', function(){
   beforeEach(function(){
    current = 1;
   })
-  describe('Basics', function(){
+  describe('Keywork Checks', function(){
 
 	  it('should return a number', function(){
 		  	expect(1).to.equal(1);
@@ -42,6 +42,9 @@ describe('**BDD Tests with Expect**', function(){
 	  it('verify jenkins integration', function(){
 		    expect(true).to.not.be.false;
 	  });
+	  it('verify jenkins test', function(){
+		    expect(true).to.not.be.false;
+	  });
   });
 })
 
@@ -54,6 +57,8 @@ describe("Tags", function(){
 		       var two = "world";
 		       var three = "three";
 		       var four = "four";
+		       var five = "five";
+		       var six = "six";
 	           var result = tags.concat(one, two);
 
 	           expect(result).to.equal("hello world");
