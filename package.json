@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test-unit": "mocha test/test",
-    "test-integration": "mocha test/test",
-    "test": "npm run test-unit && npm run test-integration"
+    "test-politics": "mocha apps/alexa/politics/test",
+    "test": "npm run test-unit && npm run test-politics"
   },
   "repository": {
     "type": "git",
