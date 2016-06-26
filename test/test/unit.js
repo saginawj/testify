@@ -18,26 +18,32 @@ describe('**TDD Tests with Assert**', function(){
   });
 })
 
-describe('**BDD Tests with Expect**', function(){
+describe('**CCAT Driver Tests**', function(){
   beforeEach(function(){
    current = 1;
   })
-  describe('Basics', function(){
-  
+  describe('Keywork Checks', function(){
+
 	  it('should return a number', function(){
 		  	expect(1).to.equal(1);
 	  });
 	  it('should equal a string', function(){
-		    expect(expectedString).to.equal("helloworld");  
+		    expect(expectedString).to.equal("helloworld");
 	  });
 	  it('should check binary to true', function(){
-		    expect(true).to.be.true; 
+		    expect(true).to.be.true;
 	  });
 	  it('should check binary to false', function(){
-		    expect(false).to.not.be.true; 
+		    expect(false).to.not.be.true;
 	  });
 	  it('should check binary', function(){
-		    expect(true).to.not.be.false; 
+		    expect(true).to.not.be.false;
+	  });
+	  it('verify jenkins integration', function(){
+		    expect(true).to.not.be.false;
+	  });
+	  it('verify jenkins test', function(){
+		    expect(true).to.not.be.false;
 	  });
   });
 })
@@ -49,9 +55,12 @@ describe("Tags", function(){
 	       it("should concatenate two strings", function(){
 	    	   var one = "hello";
 		       var two = "world";
-	           
+		       var three = "three";
+		       var four = "four";
+		       var five = "five";
+		       var six = "six";
 	           var result = tags.concat(one, two);
-	           
+
 	           expect(result).to.equal("hello world");
 	       });
 	   });
@@ -70,7 +79,7 @@ describe("Search", function(){
 	               fs.writeFileSync(".test_files/dir2/d", "");
 	           }
 	       });
-	 
+
 	       after(function() {
 	           fs.unlinkSync(".test_files/dir/c");
 	           fs.rmdirSync(".test_files/dir");

@@ -32,3 +32,7 @@ configdata.json
 .project
 event.json
 context.json
+
+#creds
+*.pem
+test.pem
