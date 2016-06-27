@@ -9,7 +9,7 @@
   "scripts": {
     "test-unit": "mocha test/test",
     "test-politics": "mocha apps/alexa/politics/test",
-    "test": "npm run test-unit && npm run test-politics"
+    "test": "npm run test-unit && npm run test-politics",
     "test-integration": "mocha test/test",
     "test": "npm run test-unit && npm run test-integration"
   },
