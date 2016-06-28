@@ -11,7 +11,10 @@ describe("**Washington Insider Events**", function(){
 
 	describe("Basic Functions", function(){
 	       it("return true", function(){
-	    	   expect(true).to.equal(true); 
+	    	   expect(true).to.equal(true);
+	       });
+	       it("return false", function(){
+	    	   expect(false).to.equal(false);
 	       });
 	   });
 });
