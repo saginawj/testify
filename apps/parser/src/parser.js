@@ -1,9 +1,9 @@
 var fs = require('fs');
 
 
-exports.jsonParse = function () {
+exports.jsonParse = function (file) {
 
-	var contents = fs.readFileSync('../data/event.json');
+	var contents = fs.readFileSync(file);
 
 	var json = JSON.parse(contents);
 
