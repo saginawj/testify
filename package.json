@@ -9,9 +9,8 @@
   "scripts": {
     "test-unit": "mocha test/test",
     "test-politics": "mocha apps/alexa/politics/test",
-    "test": "npm run test-unit && npm run test-politics",
-    "test-integration": "mocha test/test",
-    "test": "npm run test-unit && npm run test-integration"
+    "test": "npm run test-unit && npm run test-integration",
+    "test-integration": "mocha test/test"
   },
   "repository": {
     "type": "git",
@@ -27,5 +26,8 @@
     "chai": "^3.5.0",
     "lodash": "^4.13.1",
     "mocha": "^2.5.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }
