@@ -16,5 +16,10 @@ describe("**Washington Insider Events**", function(){
 	       it("return false", function(){
 	    	   expect(false).to.equal(false);
 	       });
+	       it("add two numbers", function(){
+	       		var one = 1;
+	       		var two = 2;
+	    	   expect(one + two).to.equal(3);
+	       });
 	   });
 });
