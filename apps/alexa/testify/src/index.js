@@ -7,7 +7,7 @@ AWS.config.update({region:'us-east-1'});
 
 
 var properties  = PropertiesReader('properties.txt');
-var APP_ID      = properties.get('stuff.ifttt.key');
+var APP_ID      = "amzn1.echo-sdk-ams.app.2e216a09-3941-4ffc-b8ff-7ad544764bf1"; //properties.get('stuff.ifttt.key');
 
 console.log(APP_ID);
 
@@ -40,9 +40,6 @@ Testify.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, 
 };
 
 Testify.prototype.intentHandlers = {
-    "GetNewFactIntent": function (intent, session, response) {
-        handleOpenRequest(response);
-    },
 
     //adding second event handler
     "StartTestingIntent": function (intent, session, response) {
